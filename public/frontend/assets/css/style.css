@@ -822,7 +822,7 @@ nav.navbar.bootsnav.sticked .attr-nav.social li {
 .breadcrumb > li + li::before {
     color: #ffffff;
     content: "\f101";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-weight: 600;
     padding: 0 5px;
 }
@@ -1757,7 +1757,7 @@ body,
 .about-area ul li::before {
     color: var(--main-bg-color);;
     content: "\f00c";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-weight: 900;
     left: 0;
     position: absolute;
@@ -2266,7 +2266,7 @@ body,
     border-radius: 50%;
     color: var(--main-bg-color);;
     content: "\f00c";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-size: 12px;
     font-weight: 600;
     height: 25px;
@@ -3703,7 +3703,7 @@ blockquote {
     position: absolute;
     right: 10px;
     top: 17px;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-weight: 900;
     color: var(--main-bg-color);;
 }
@@ -3715,13 +3715,13 @@ blockquote {
     right: auto;
     left: 10px;
     top: 12px;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-weight: 900;
 }
 
 .acd-arrow.left .panel-group.symb .panel-heading a.collapsed:after {
     content: "\f01a" !important;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-weight: 900;
 }
 
@@ -3731,7 +3731,7 @@ blockquote {
 
 .acd-arrow .panel-group.symb .panel-heading a.collapsed:after {
     content: "\f105";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-weight: 900;
 }
 

@@ -1,18 +1,18 @@
-@props(['type' => 'text', 'label', 'name', 'value', 'placeholder', 'required' => false])
+@props(['type' => 'text', 'label', 'name', 'value', 'placeholder', 'required' => true])
 
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap-icons.min.css') }}">
 @endpush
 @isset($label)
-    <label for="{{ $name }}">{{ $label }}</label>
+    <label for="{{ $name }}">{{ $label }}@if ($required) <span class="text-danger">*</span> @endif</label>
 @endisset
 <input type="{{ $type }}" class="form-control iconpicker @error($name) border-danger @enderror" readonly
     title="{{ $label ?? $name }}" id="{{ $name }}" name="{{ $name }}"
     @isset($placeholder)
     placeholder="{{ $placeholder }}"
     @endisset
-    required="{{ $required }}"
+    @if ($required) required @endif
     @isset($value)
         value="{{ $value }}"
         @else

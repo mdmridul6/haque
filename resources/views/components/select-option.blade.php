@@ -3,7 +3,7 @@
     'name',
     'options' => [],
     'values' => null,
-    'required' => false,
+    'required' => true,
     'autocomplete' => false,
     'valueField',
     'titleField',
@@ -11,7 +11,7 @@
 ])
 
 @isset($label)
-    <label for="{{ $name }}">{{ $label }}</label>
+    <label for="{{ $name }}">{{ $label }} @if ($required) <span class="text-danger">*</span> @endif</label>
 @endisset
 
 
@@ -20,7 +20,7 @@
 @endphp
 
 <select class="form-control select2-style" name="{{ $fieldName }}" id="{{ $name }}"
-    @if ($multiple) multiple @endif data-placeholder="Choose One">
+    @if ($multiple) multiple @endif data-placeholder="Choose One" @if ($required) required @endif>
 
     @foreach ($options as $item)
         <option value="{{ $item->$valueField }}"

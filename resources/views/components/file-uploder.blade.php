@@ -68,25 +68,42 @@
             </script>
         @endif
     @else
-        <script>
-            const {{ $name }} = [{
-                id: 1,
-                src: @js(asset($image_url))
-            }, ]
+        @if (isset($image_url))
+            <script>
+                const {{ $name }} = [{
+                    id: 1,
+                    src: @js(asset($image_url))
+                }, ]
 
 
-            $(document).ready(function() {
-                $('#' + @js($name)).imageUploader({
-                    imagesInputName: @js($name),
-                    preloaded: {{ $name }},
-                    onError: (message) => {
-                        $.growl.error({
-                            message: message
-                        });
-                    }
+                $(document).ready(function() {
+                    $('#' + @js($name)).imageUploader({
+                        imagesInputName: @js($name),
+                        preloaded: {{ $name }},
+                        onError: (message) => {
+                            $.growl.error({
+                                message: message
+                            });
+                        }
 
-                });
-            })
-        </script>
+                    });
+                })
+            </script>
+        @else
+            <script>
+                $(document).ready(function() {
+                    $('#' + @js($name)).imageUploader({
+                        imagesInputName: @js($name),
+
+                        onError: (message) => {
+                            $.growl.error({
+                                message: message
+                            });
+                        }
+
+                    });
+                })
+            </script>
+        @endif
     @endif
 @endpush

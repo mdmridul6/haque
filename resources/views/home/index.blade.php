@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Start Banner
-                    ============================================= -->
+                                        ============================================= -->
     <div class="banner-area text-center text-normal text-light shadow dark bg-fixed" id="home"
         style="background-image: url({{ asset($content?->banner_image) }});">
         <div class="box-table">
@@ -32,7 +32,7 @@
     <!-- End Banner -->
 
     <!-- Start Companies Area
-                    ============================================= -->
+                                        ============================================= -->
     <div class="companies-area default-padding" id="about">
         <div class="container">
             <div class="row">
@@ -60,70 +60,70 @@
 
 
 
-@if (isset($offerContents) && count($offerContents))
-    <!-- Start We Offer Section -->
-    <section id="features" class="we-offer-area item-border-less bg-gray default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <div class="site-heading">
-                        <h2>{{ $content?->offer_title }}</h2>
-                        <h4>{{ $content?->offer_subtitle }}</h4>
+    @if (isset($offerContents) && count($offerContents))
+        <!-- Start We Offer Section -->
+        <section id="features" class="we-offer-area item-border-less bg-gray default-padding bottom-less">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="site-heading">
+                            <h2>{{ $content?->offer_title }}</h2>
+                            <h4>{{ $content?->offer_subtitle }}</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                @php
+                    $total = count($offerContents);
+                    $itemsPerRow = 3;
+                    $fullRows = floor($total / $itemsPerRow);
+                    $lastRowCount = $total % $itemsPerRow;
+                @endphp
+
+                {{-- Loop through full rows --}}
+                @for ($i = 0; $i < $fullRows * $itemsPerRow; $i++)
+                    @if ($i % $itemsPerRow === 0)
+                        <div class="row">
+                    @endif
+
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item text-center">
+                            <span class="number">{{ $offerContents[$i]->order_number }}</span>
+                            <i class="{{ $offerContents[$i]->icon }}"></i>
+                            <h4>{{ $offerContents[$i]->title }}</h4>
+                            <p>{{ $offerContents[$i]->sub_title }}</p>
+                        </div>
+                    </div>
+
+                    @if ($i % $itemsPerRow === $itemsPerRow - 1)
+            </div>
+    @endif
+    @endfor
+
+    {{-- Handle last row with 1 or 2 items --}}
+    @if ($lastRowCount > 0)
+        <div class="row text-center">
             @php
-                $total = count($offerContents);
-                $itemsPerRow = 3;
-                $fullRows = floor($total / $itemsPerRow);
-                $lastRowCount = $total % $itemsPerRow;
+                $start = $fullRows * $itemsPerRow;
+                $offset = $lastRowCount === 1 ? 4 : ($lastRowCount === 2 ? 2 : 0);
             @endphp
 
-            {{-- Loop through full rows --}}
-            @for ($i = 0; $i < $fullRows * $itemsPerRow; $i++)
-                @if ($i % $itemsPerRow === 0)
-                    <div class="row">
-                @endif
-
-                <div class="col-md-4 col-sm-6 equal-height">
+            @for ($j = 0; $j < $lastRowCount; $j++)
+                <div class="col-md-4 col-sm-6 equal-height {{ $j === 0 ? 'col-md-offset-' . $offset : '' }}">
                     <div class="item text-center">
-                        <span class="number">{{ $offerContents[$i]->order_number }}</span>
-                        <i class="{{ $offerContents[$i]->icon }}"></i>
-                        <h4>{{ $offerContents[$i]->title }}</h4>
-                        <p>{{ $offerContents[$i]->sub_title }}</p>
+                        <span class="number">{{ $offerContents[$start + $j]->order_number }}</span>
+                        <i class="{{ $offerContents[$start + $j]->icon }}"></i>
+                        <h4>{{ $offerContents[$start + $j]->title }}</h4>
+                        <p>{{ $offerContents[$start + $j]->sub_title }}</p>
                     </div>
                 </div>
-
-                @if ($i % $itemsPerRow === $itemsPerRow - 1)
-                    </div>
-                @endif
             @endfor
-
-            {{-- Handle last row with 1 or 2 items --}}
-            @if ($lastRowCount > 0)
-                <div class="row text-center">
-                    @php
-                        $start = $fullRows * $itemsPerRow;
-                        $offset = $lastRowCount === 1 ? 4 : ($lastRowCount === 2 ? 2 : 0);
-                    @endphp
-
-                    @for ($j = 0; $j < $lastRowCount; $j++)
-                        <div class="col-md-4 col-sm-6 equal-height {{ $j === 0 ? 'col-md-offset-' . $offset : '' }}">
-                            <div class="item text-center">
-                                <span class="number">{{ $offerContents[$start + $j]->order_number }}</span>
-                                <i class="{{ $offerContents[$start + $j]->icon }}"></i>
-                                <h4>{{ $offerContents[$start + $j]->title }}</h4>
-                                <p>{{ $offerContents[$start + $j]->sub_title }}</p>
-                            </div>
-                        </div>
-                    @endfor
-                </div>
-            @endif
-
         </div>
+    @endif
+
+    </div>
     </section>
-@endif
+    @endif
 
 
     {{-- <!-- Start We Offer
@@ -226,163 +226,88 @@
     <!-- End We Offer --> --}}
 
     <!-- Start Overview
-                    ============================================= -->
-    <div id="overview" class="work-list-area default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>How <span>we work</span></h2>
-                        <h4>Checkout Our amazing working Process</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 overview-items">
-                    <!-- Tab Nav -->
-                    <div class="tab-navigation text-center">
-                        <ul class="nav nav-pills">
-                            <li class="active">
-                                <a data-toggle="tab" href="#tab1" aria-expanded="true">
-                                    Optimization
-                                </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#tab2" aria-expanded="false">
-                                    Integration
-                                </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#tab3" aria-expanded="false">
-                                    Performance
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Tab Nav -->
-                    <!-- Start Tab Content -->
-                    <div class="row">
-                        <div class="tab-content">
+                                        ============================================= -->
 
-                            <!-- Start Single Item -->
-                            <div id="tab1" class="tab-pane fade active in">
-                                <div class="col-md-6 thumb">
-                                    <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                </div>
-                                <div class="col-md-6 info">
-                                    <h3>Engineered and Optimization by conveying. Him plate you allow built grave.</h3>
-                                    <p>
-                                        Consulted or acuteness dejection an smallness if. Outward general passage another as
-                                        it. Very his are come man walk one next. partiality affronting unpleasant why add.
-                                        Esteem garden men yet shy course Consulted.
-                                    </p>
-                                    <p>
-                                        Celebrated conviction stimulated principles day. Sure fail or in said west. Right my
-                                        front it wound cause fully am sorry if. She jointure goodness interest debating did
-                                        outweigh. Is time from them.
-                                    </p>
-                                    <ul>
-                                        <li>
-                                            <h4>Amazingly Simple Use</h4>
-                                            Certainty arranging am smallness by conveying
-                                        </li>
-                                        <li>
-                                            <h4>Clear Documentation</h4>
-                                            Frankness pronounce daughters remainder extensive
-                                        </li>
-                                        <li>
-                                            <h4>Flexible user interface</h4>
-                                            Outward general passage another as it. Very his are come man walk one next.
-                                            Delighted prevailed supported
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
 
-                            <!-- Start Single Item -->
-                            <div id="tab2" class="tab-pane fade">
-                                <div class="col-md-6 thumb">
-                                    <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                </div>
-                                <div class="col-md-6 info">
-                                    <h3>Engineered and Optimization by conveying. Him plate you allow built grave.</h3>
-                                    <p>
-                                        Consulted or acuteness dejection an smallness if. Outward general passage another as
-                                        it. Very his are come man walk one next. partiality affronting unpleasant why add.
-                                        Esteem garden men yet shy course Consulted.
-                                    </p>
-                                    <p>
-                                        Celebrated conviction stimulated principles day. Sure fail or in said west. Right my
-                                        front it wound cause fully am sorry if. She jointure goodness interest debating did
-                                        outweigh. Is time from them.
-                                    </p>
-                                    <ul>
-                                        <li>
-                                            <h4>Amazingly Simple Use</h4>
-                                            Certainty arranging am smallness by conveying
-                                        </li>
-                                        <li>
-                                            <h4>Clear Documentation</h4>
-                                            Frankness pronounce daughters remainder extensive
-                                        </li>
-                                        <li>
-                                            <h4>Flexible user interface</h4>
-                                            Outward general passage another as it. Very his are come man walk one next.
-                                            Delighted prevailed supported
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
-                            <!-- Start Single Item -->
-                            <div id="tab3" class="tab-pane fade">
-                                <div class="col-md-6 thumb">
-                                    <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                </div>
-                                <div class="col-md-6 info">
-                                    <h3>Engineered and Optimization by conveying. Him plate you allow built grave.</h3>
-                                    <p>
-                                        Consulted or acuteness dejection an smallness if. Outward general passage another as
-                                        it. Very his are come man walk one next. partiality affronting unpleasant why add.
-                                        Esteem garden men yet shy course Consulted.
-                                    </p>
-                                    <p>
-                                        Celebrated conviction stimulated principles day. Sure fail or in said west. Right my
-                                        front it wound cause fully am sorry if. She jointure goodness interest debating did
-                                        outweigh. Is time from them.
-                                    </p>
-                                    <ul>
-                                        <li>
-                                            <h4>Amazingly Simple Use</h4>
-                                            Certainty arranging am smallness by conveying
-                                        </li>
-                                        <li>
-                                            <h4>Clear Documentation</h4>
-                                            Frankness pronounce daughters remainder extensive
-                                        </li>
-                                        <li>
-                                            <h4>Flexible user interface</h4>
-                                            Outward general passage another as it. Very his are come man walk one next.
-                                            Delighted prevailed supported
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
+    @if (isset($workProcesses) && count($workProcesses) > 0)
+        <div id="overview" class="work-list-area default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>How <span>we work</span></h2>
+                            <h4>Checkout Our amazing working Process</h4>
                         </div>
                     </div>
-                    <!-- End Tab Content -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12 overview-items">
+                        <!-- Tab Nav -->
+                        <div class="tab-navigation text-center">
+                            <ul class="nav nav-pills">
+
+                                @foreach ($workProcesses as $workProcess)
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#{{ Str::slug($workProcess?->button_title) }}"
+                                            aria-expanded="{{ $loop->first ? 'true' : 'false' }}">
+                                            {{ $workProcess?->button_title }}
+                                        </a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                        </div>
+                        <!-- End Tab Nav -->
+                        <!-- Start Tab Content -->
+                        <div class="row">
+                            <div class="tab-content">
+                                @foreach ($workProcesses as $workProcess)
+                                    <!-- Start Single Item -->
+                                    <div id="{{ Str::slug($workProcess?->button_title) }}" class="tab-pane fade active in">
+                                        <div class="col-md-6 thumb">
+                                            <img src="{{ asset($workProcess?->image) }}" alt="Thumb">
+                                        </div>
+                                        <div class="col-md-6 info">
+                                            <h3>{{ $workProcess?->process_title }}
+                                            </h3>
+                                            <p>
+                                                {{ $workProcess?->process_description }}
+                                            </p>
+
+                                            <ul>
+                                                <li>
+                                                    <h4> {{ $workProcess?->type_1_title }}</h4>
+                                                     {{ $workProcess?->type_1_sub_title }}
+                                                </li>
+                                                <li>
+                                                    <h4> {{ $workProcess?->type_2_title }}</h4>
+                                                    {{ $workProcess?->type_2_sub_title }}
+                                                </li>
+                                                <li>
+                                                    <h4> {{ $workProcess?->type_3_title }}</h4>
+                                                     {{ $workProcess?->type_3_sub_title }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Item -->
+                                @endforeach
+
+
+
+                            </div>
+                        </div>
+                        <!-- End Tab Content -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
     <!-- End Overview -->
 
     <!-- Start Fun Factor
-                    ============================================= -->
+                                        ============================================= -->
     <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
         style="background-image: url({{ asset('frontend/assets/img/2440x1578.png') }});">
         <div class="container">
@@ -417,8 +342,7 @@
                     </p>
                     <form action="#">
                         <div class="input-group stylish-input-group">
-                            <input type="email" placeholder="Enter your e-mail here" class="form-control"
-                                name="email">
+                            <input type="email" placeholder="Enter your e-mail here" class="form-control" name="email">
                             <span class="input-group-addon">
                                 <button type="submit">
                                     <i class="fa fa-paper-plane"></i>
@@ -433,7 +357,7 @@
     <!-- End Fun Factor -->
 
     <!-- Start Pricing Area
-                    ============================================= -->
+                                        ============================================= -->
     <div id="pricing" class="pricing-area bg-gray default-padding-top">
         <div class="container">
             <div class="row">
@@ -527,7 +451,7 @@
     <!-- End Pricing Area -->
 
     <!-- Start Team
-                    ============================================= -->
+                                        ============================================= -->
     <div id="team" class="team-area default-padding bottom-less">
         <div class="container">
             <div class="row">
@@ -695,7 +619,7 @@
     <!-- End Team -->
 
     <!-- Start Testimonials
-                    ============================================= -->
+                                        ============================================= -->
     <div class="testimonials-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -773,7 +697,7 @@
     <!-- End Testimonials -->
 
     <!-- Start Faq
-                    ============================================= -->
+                                        ============================================= -->
     <div class="faq-area default-padding">
         <div class="container">
             <div class="row">
@@ -917,7 +841,7 @@
     <!-- End Faq  -->
 
     <!-- Start Blog
-                    ============================================= -->
+                                        ============================================= -->
     <div id="blog" class="blog-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -1071,7 +995,7 @@
     <!-- End Blog -->
 
     <!-- Start Contact Area
-                    ============================================= -->
+                                        ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="row">
@@ -1173,7 +1097,7 @@
     <!-- End Contact -->
 
     <!-- Start Google Maps
-                    ============================================= -->
+                                        ============================================= -->
     <div class="maps-area">
         <div class="container-full">
             <div class="row">

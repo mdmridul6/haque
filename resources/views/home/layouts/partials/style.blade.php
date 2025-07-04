@@ -1,8 +1,8 @@
 <!-- ========== Start Stylesheet ========== -->
 <link href="{{ asset('frontend/assets/css/bootstrap.min.css') }}" rel="stylesheet" />
-<link href="{{ asset('frontend/assets/css/bootstrap-icons.min.css') }}" rel="stylesheet" />
 
 <link href="{{ asset('frontend/assets/css/font-awesome.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('frontend/assets/css/bootstrap-icons.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('frontend/assets/css/flaticon-set.css') }}" rel="stylesheet" />
 <link href="{{ asset('frontend/assets/css/magnific-popup.css') }}" rel="stylesheet" />
 <link href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}" rel="stylesheet" />
