@@ -6,12 +6,8 @@
 @section('content')
     <!-- PAGE HEADER -->
     <div class="page-header d-sm-flex d-block">
-        <ol class="breadcrumb mb-sm-0 mb-3">
-            <!-- breadcrumb -->
-            <li class="breadcrumb-item"><a href="{{ url('index') }}">Home</a></li>
-            <li class="breadcrumb-item">Administration</li>
-            <li class="breadcrumb-item active" aria-current="page">Roles</li>
-        </ol><!-- End breadcrumb -->
+        <x-breadcrumbs :segments="$breadcrumbs" />
+        <!-- End breadcrumb -->
 
         <x-add-button href="{{ route('admin.roles.create') }}" />
 
@@ -75,5 +71,5 @@
 @endsection
 
 @section('scripts')
-   
+
 @endsection

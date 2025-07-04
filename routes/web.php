@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProfileConreoller;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WorkProcessController;
 use App\Http\Controllers\Authenticate\AuthenticateController;
 
 
@@ -18,6 +19,7 @@ use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Index;
+use App\Models\WorkProcess;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +69,10 @@ Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function ()
     Route::get('/offer/{offerContent}/edit', [OfferContentController::class, 'edit'])->name('offer.edit');
     Route::put('/offer/{offerContent}', [OfferContentController::class, 'storeOfferUpdate'])->name('offer.update');
     Route::delete('/offer/{offerContent}', [OfferContentController::class, 'destroy'])->name('offer.destroy');
+
+
+
+    Route::resource('work-process', WorkProcessController::class);
 });
 
 

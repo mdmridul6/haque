@@ -6,12 +6,7 @@
 @section('content')
     <!-- PAGE HEADER -->
     <div class="page-header d-sm-flex d-block">
-        <ol class="breadcrumb mb-sm-0 mb-3">
-            <!-- breadcrumb -->
-            <li class="breadcrumb-item"><a href="{{ url('index') }}">Home</a></li>
-            <li class="breadcrumb-item">Administration</li>
-            <li class="breadcrumb-item active" aria-current="page">User</li>
-        </ol><!-- End breadcrumb -->
+        <x-breadcrumbs :segments="$breadcrumbs" /><!-- End breadcrumb -->
         <div class="ms-auto">
             <x-add-button href="{{ route('admin.user.create') }}" />
         </div>
@@ -73,5 +68,5 @@
 @endsection
 
 @section('scripts')
-    
+
 @endsection

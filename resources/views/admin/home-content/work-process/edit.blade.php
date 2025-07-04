@@ -6,9 +6,10 @@
 @section('content')
     <!-- PAGE HEADER -->
     <div class="page-header d-sm-flex d-block">
-       <x-breadcrumbs :segments="$breadcrumbs" /><!-- End breadcrumb -->
+        <x-breadcrumbs :segments="$breadcrumbs" />
+        <!-- End breadcrumb -->
         <div class="ms-auto">
-            <x-back-button href="{{ route('admin.user.index') }}" />
+            <x-back-button href="{{ route('admin.work-process.index') }}" />
         </div>
     </div>
     <!-- END PAGE HEADER -->
