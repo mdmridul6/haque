@@ -247,7 +247,7 @@
                             <ul class="nav nav-pills">
 
                                 @foreach ($workProcesses as $workProcess)
-                                    <li class="active">
+                                    <li class="{{ $loop->first ? 'active' : '' }}">
 
                                         <a data-toggle="tab" href="#{{ Str::slug($workProcess?->button_title) }}"
                                             aria-expanded="{{ $loop->first ? 'true' : 'false' }}">
