@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Start Banner
-                                        ============================================= -->
+                                            ============================================= -->
     <div class="banner-area text-center text-normal text-light shadow dark bg-fixed" id="home"
         style="background-image: url({{ asset($content?->banner_image) }});">
         <div class="box-table">
@@ -32,7 +32,7 @@
     <!-- End Banner -->
 
     <!-- Start Companies Area
-                                        ============================================= -->
+                                            ============================================= -->
     <div class="companies-area default-padding" id="about">
         <div class="container">
             <div class="row">
@@ -226,7 +226,7 @@
     <!-- End We Offer --> --}}
 
     <!-- Start Overview
-                                        ============================================= -->
+                                            ============================================= -->
 
 
     @if (isset($workProcesses) && count($workProcesses) > 0)
@@ -247,7 +247,7 @@
                             <ul class="nav nav-pills">
 
                                 @foreach ($workProcesses as $workProcess)
-                                    <li class="{{ $loop->first ? 'active' : '' }}">
+                                    <li @if($loop->first) class="active" @endif>
 
                                         <a data-toggle="tab" href="#{{ Str::slug($workProcess?->button_title) }}"
                                             aria-expanded="{{ $loop->first ? 'true' : 'false' }}">
@@ -264,7 +264,7 @@
                             <div class="tab-content">
                                 @foreach ($workProcesses as $workProcess)
                                     <!-- Start Single Item -->
-                                    <div id="{{ Str::slug($workProcess?->button_title) }}" class="tab-pane fade active in">
+                                    <div id="{{ Str::slug($workProcess?->button_title) }}" class="tab-pane fade @if($loop->first) active @endif in">
                                         <div class="col-md-6 thumb">
                                             <img src="{{ asset($workProcess?->image) }}" alt="Thumb">
                                         </div>
@@ -276,18 +276,25 @@
                                             </p>
 
                                             <ul>
-                                                <li>
-                                                    <h4> {{ $workProcess?->type_1_title }}</h4>
-                                                     {{ $workProcess?->type_1_sub_title }}
-                                                </li>
-                                                <li>
-                                                    <h4> {{ $workProcess?->type_2_title }}</h4>
-                                                    {{ $workProcess?->type_2_sub_title }}
-                                                </li>
-                                                <li>
-                                                    <h4> {{ $workProcess?->type_3_title }}</h4>
-                                                     {{ $workProcess?->type_3_sub_title }}
-                                                </li>
+                                                @if ($workProcess?->type_1_title && $workProcess?->type_1_sub_title)
+                                                    <li>
+                                                        <h4> {{ $workProcess?->type_1_title }}</h4>
+                                                        {{ $workProcess?->type_1_sub_title }}
+                                                    </li>
+                                                @endif
+
+                                                @if ($workProcess?->type_2_title && $workProcess?->type_2_sub_title)
+                                                    <li>
+                                                        <h4> {{ $workProcess?->type_2_title }}</h4>
+                                                        {{ $workProcess?->type_2_sub_title }}
+                                                    </li>
+                                                @endif
+                                                @if ($workProcess?->type_3_title && $workProcess?->type_3_sub_title)
+                                                    <li>
+                                                        <h4> {{ $workProcess?->type_3_title }}</h4>
+                                                        {{ $workProcess?->type_3_sub_title }}
+                                                    </li>
+                                                @endif
                                             </ul>
                                         </div>
                                     </div>
@@ -308,7 +315,7 @@
     <!-- End Overview -->
 
     <!-- Start Fun Factor
-                                        ============================================= -->
+                                            ============================================= -->
     <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
         style="background-image: url({{ asset('frontend/assets/img/2440x1578.png') }});">
         <div class="container">
@@ -358,7 +365,7 @@
     <!-- End Fun Factor -->
 
     <!-- Start Pricing Area
-                                        ============================================= -->
+                                            ============================================= -->
     <div id="pricing" class="pricing-area bg-gray default-padding-top">
         <div class="container">
             <div class="row">
@@ -452,7 +459,7 @@
     <!-- End Pricing Area -->
 
     <!-- Start Team
-                                        ============================================= -->
+                                            ============================================= -->
     <div id="team" class="team-area default-padding bottom-less">
         <div class="container">
             <div class="row">
@@ -620,7 +627,7 @@
     <!-- End Team -->
 
     <!-- Start Testimonials
-                                        ============================================= -->
+                                            ============================================= -->
     <div class="testimonials-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -698,7 +705,7 @@
     <!-- End Testimonials -->
 
     <!-- Start Faq
-                                        ============================================= -->
+                                            ============================================= -->
     <div class="faq-area default-padding">
         <div class="container">
             <div class="row">
@@ -842,7 +849,7 @@
     <!-- End Faq  -->
 
     <!-- Start Blog
-                                        ============================================= -->
+                                            ============================================= -->
     <div id="blog" class="blog-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -996,7 +1003,7 @@
     <!-- End Blog -->
 
     <!-- Start Contact Area
-                                        ============================================= -->
+                                            ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="row">
@@ -1098,7 +1105,7 @@
     <!-- End Contact -->
 
     <!-- Start Google Maps
-                                        ============================================= -->
+                                            ============================================= -->
     <div class="maps-area">
         <div class="container-full">
             <div class="row">

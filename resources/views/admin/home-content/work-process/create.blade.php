@@ -82,7 +82,7 @@
 
 
                         <div class="btn-list text-end">
-                            <button type="submit" class="btn btn-success">Save User</button>
+                            <button type="submit" class="btn btn-success">Save</button>
                             <a href="{{ route('admin.work-process.index') }}" class="btn btn-secondary ms-2">Cancel</a>
                         </div>
 

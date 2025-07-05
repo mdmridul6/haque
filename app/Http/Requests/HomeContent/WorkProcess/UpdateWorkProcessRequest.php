@@ -13,7 +13,7 @@ class UpdateWorkProcessRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,13 +27,13 @@ class UpdateWorkProcessRequest extends FormRequest
             "button_title"  => ['required'],
             "process_title" => ['required'],
             "process_description" => ['required'],
-            "image" => ['required','image'],
+            "image" => ['image'],
             "type_1_title" => ['sometimes'],
-            "type_1_sub_title" => ['sometimes'],
+            "type_1_sub_title" => ['required_with:type_1_title'],
             "type_2_title" => ['sometimes'],
-            "type_2_sub_title" => ['sometimes'],
+            "type_2_sub_title" => ['required_with:type_2_title'],
             "type_3_title" => ['sometimes'],
-            "type_3_sub_title" => ['sometimes'],
+            "type_3_sub_title" => ['required_with:type_3_title'],
         ];
     }
 }

@@ -65,7 +65,7 @@ class WorkProcessController extends Controller
      */
     public function show(WorkProcess $workProcess)
     {
-        //
+
     }
 
     /**
@@ -88,7 +88,16 @@ class WorkProcessController extends Controller
      */
     public function update(UpdateWorkProcessRequest $request, WorkProcess $workProcess)
     {
-        //
+          try {
+            DB::beginTransaction();
+            self::storeAndUpdate($workProcess, $request);
+            DB::commit();
+            Toastr::success('Workprocess update successfully', 'Success');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        return redirect()->route('admin.work-process.index');
     }
 
     /**
@@ -99,7 +108,16 @@ class WorkProcessController extends Controller
      */
     public function destroy(WorkProcess $workProcess)
     {
-        //
+          try {
+            DB::beginTransaction();
+            $workProcess->delete();
+            DB::commit();
+            Toastr::success('Workprocess delete successfully', 'Success');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        return redirect()->back();
     }
 
 
