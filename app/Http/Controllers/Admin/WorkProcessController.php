@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ImageUploader;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HomeContent\WorkProcess\StoreWorkProcessRequest;
+use App\Http\Requests\HomeContent\WorkProcess\UpdateWorkProcessRequest;
 use App\Models\WorkProcess;
-use App\Http\Requests\StoreWorkProcessRequest;
-use App\Http\Requests\UpdateWorkProcessRequest;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\DB;
 
 class WorkProcessController extends Controller
 {
@@ -16,9 +19,9 @@ class WorkProcessController extends Controller
      */
     public function index()
     {
-        $workProcesses=WorkProcess::get();
+        $workProcesses = WorkProcess::get();
 
-        return view('admin.home-content.work-process.index',compact('workProcesses'));
+        return view('admin.home-content.work-process.index', compact('workProcesses'));
     }
 
     /**
@@ -29,7 +32,6 @@ class WorkProcessController extends Controller
     public function create()
     {
         return view('admin.home-content.work-process.create');
-
     }
 
     /**
@@ -40,7 +42,19 @@ class WorkProcessController extends Controller
      */
     public function store(StoreWorkProcessRequest $request)
     {
-        //
+
+         try {
+            DB::beginTransaction();
+            $workProcess=new WorkProcess();
+            self::storeAndUpdate($workProcess, $request);
+            DB::commit();
+            Toastr::success('Workprocess add successfully', 'Success');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        return redirect()->route('admin.work-process.index');
+
     }
 
     /**
@@ -62,8 +76,7 @@ class WorkProcessController extends Controller
      */
     public function edit(WorkProcess $workProcess)
     {
-        return view('admin.home-content.work-process.edit',compact('workProcess'));
-
+        return view('admin.home-content.work-process.edit', compact('workProcess'));
     }
 
     /**
@@ -87,5 +100,28 @@ class WorkProcessController extends Controller
     public function destroy(WorkProcess $workProcess)
     {
         //
+    }
+
+
+    protected function storeAndUpdate(WorkProcess $workProcess, $request): WorkProcess
+    {
+
+        $workProcess->button_title = $request->button_title;
+        $workProcess->process_title = $request->process_title;
+        $workProcess->process_description = $request->process_description;
+        $workProcess->type_1_title = $request->type_1_title;
+        $workProcess->type_1_sub_title = $request->type_1_sub_title;
+        $workProcess->type_2_title = $request->type_2_title;
+        $workProcess->type_2_sub_title = $request->type_2_sub_title;
+        $workProcess->type_3_title = $request->type_3_title;
+        $workProcess->type_3_sub_title = $request->type_3_sub_title;
+
+
+        if ($request->hasFile('image')) {
+            $path = ImageUploader::resizeUpload($request->image, 'workprocess', 800, 800);
+            $workProcess->image = $path;
+        }
+        $workProcess->save();
+        return $workProcess;
     }
 }

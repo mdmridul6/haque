@@ -38,8 +38,8 @@
                                         <td><span class="avatar avatar-lg cover-image br-2"
                                                 data-bs-image-src="{{ asset($workProcess->image) }}"></span></td>
                                         <td>{{ $workProcess->button_title }}</td>
-                                        <td>{{ $workProcess->process_title }}</td>
-                                        <td>{{ $workProcess->process_description }}</td>
+                                        <td>{{ Str::limit($workProcess->process_title,30,"...") }}</td>
+                                        <td>{{ Str::limit($workProcess->process_description,30,"...") }}</td>
                                         <td class="d-flex justify-content-evenly align-item-center">
                                             <x-edit-button
                                                 href="{{ route('admin.work-process.edit', ['work_process' => $workProcess->id]) }}" />

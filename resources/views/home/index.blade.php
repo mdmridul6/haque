@@ -248,6 +248,7 @@
 
                                 @foreach ($workProcesses as $workProcess)
                                     <li class="active">
+
                                         <a data-toggle="tab" href="#{{ Str::slug($workProcess?->button_title) }}"
                                             aria-expanded="{{ $loop->first ? 'true' : 'false' }}">
                                             {{ $workProcess?->button_title }}

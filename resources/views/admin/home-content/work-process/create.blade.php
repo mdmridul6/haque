@@ -50,32 +50,32 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_1_title" label="Step 1 Title" />
+                                    <x-text-input name="type_1_title" :required="false" label="Step 1 Title" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_1_sub_title" label="Step 1 Sort Description" />
+                                    <x-text-input name="type_1_sub_title" :required="false" label="Step 1 Sort Description" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_2_title" label="Step 2 Title" />
+                                    <x-text-input name="type_2_title" :required="false" label="Step 2 Title" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_2_sub_title" label="Step 2 Sort Description" />
+                                    <x-text-input name="type_2_sub_title" :required="false" label="Step 2 Sort Description" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_3_title" label="Step 3 Title" />
+                                    <x-text-input name="type_3_title" :required="false" label="Step 3 Title" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_3_sub_title" label="Step 3 Sort Description" />
+                                    <x-text-input name="type_3_sub_title" :required="false" label="Step 3 Sort Description" />
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
 
                         <div class="btn-list text-end">
                             <button type="submit" class="btn btn-success">Save User</button>
-                            <a href="{{ route('admin.user.index') }}" class="btn btn-secondary ms-2">Cancel</a>
+                            <a href="{{ route('admin.work-process.index') }}" class="btn btn-secondary ms-2">Cancel</a>
                         </div>
 
                     </form>
