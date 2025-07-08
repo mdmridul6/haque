@@ -140,6 +140,8 @@
                                                     href="{{ route('admin.offer.index') }}">Offer Section</a></li>
                                             <li><a class="slide-item"
                                                     href="{{ route('admin.work-process.index') }}">Work Prosess Section</a></li>
+                                            <li><a class="slide-item"
+                                                    href="{{ route('admin.plan.index') }}">Plan</a></li>
                                         </ul>
                                     </div>
                                 </div>

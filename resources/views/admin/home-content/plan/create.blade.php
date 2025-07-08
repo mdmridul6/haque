@@ -9,7 +9,7 @@
         <x-breadcrumbs :segments="$breadcrumbs" />
         <!-- End breadcrumb -->
         <div class="ms-auto">
-            <x-back-button href="{{ route('admin.work-process.index') }}" />
+            <x-back-button href="{{ route('admin.plan.index') }}" />
         </div>
     </div>
     <!-- END PAGE HEADER -->
@@ -23,61 +23,68 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ route('admin.work-process.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.plan.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
 
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="button_title" label="Button Title" />
+                                    <x-text-input name="title" label="Title" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="process_title" label="Process Title" />
+                                    <x-text-input name="price" label="Price" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-area name="process_description" label="Process Description" />
+                                    <x-select-option name="duration" label="Duration" :options="$duration"
+                                        valueField="duration" titleField="name" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-file-uploder name="image" label="Thumble" />
+                                    <x-icon-picker name="badge_icon" label="Button Title" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <x-text-input name="button_text" label="Button Title" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_1_title" :required="false" label="Step 1 Title" />
+                                    <label class="form-label fw-bold">Status</label>
+                                    <select class="form-select form-control" name="is_actived" id="">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_1_sub_title" :required="false" label="Step 1 Sort Description" />
+                                    <x-text-input name="order_number" label="Order Number" />
                                 </div>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_2_title" :required="false" label="Step 2 Title" />
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Features</label>
+                                    <div id="feature-wrapper">
+                                        <div class="input-group mb-2">
+                                            <input type="text" name="features[]" class="form-control"
+                                                placeholder="Enter a feature">
+                                            <button type="button" class="btn btn-danger remove-feature">Remove</button>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="add-feature" class="btn btn-outline-primary btn-sm">+ Add
+                                        Feature</button>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_2_sub_title" :required="false" label="Step 2 Sort Description" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_3_title" :required="false" label="Step 3 Title" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_3_sub_title" :required="false" label="Step 3 Sort Description" />
-                                </div>
-                            </div>
+
                         </div>
 
 
@@ -96,4 +103,21 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#add-feature').click(function() {
+                $('#feature-wrapper').append(`
+            <div class="input-group mb-2">
+                <input type="text" name="features[]" class="form-control" placeholder="Enter a feature">
+                <button type="button" class="btn btn-danger remove-feature">Remove</button>
+            </div>
+        `);
+            });
+
+            // Remove feature
+            $(document).on('click', '.remove-feature', function() {
+                $(this).closest('.input-group').remove();
+            });
+        });
+    </script>
 @endpush

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Plan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,18 @@ class PlanFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Plan::class;
     public function definition()
     {
         return [
-            //
+            'title' => 'Regular',
+            'price' => '29',
+            'duration' => 'Monthly',
+            'badge_icon' => 'bi bi-gear-fill fs-1',
+            'features' => '',
+            'button_text' => 'Get Started',
+            'is_actived' => true,
+            'order_number' => 1,
         ];
     }
 }

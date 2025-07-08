@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\OfferContentController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfileConreoller;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
@@ -73,6 +74,7 @@ Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function ()
 
 
     Route::resource('work-process', WorkProcessController::class);
+    Route::resource('plan', PlanController::class);
 });
 
 

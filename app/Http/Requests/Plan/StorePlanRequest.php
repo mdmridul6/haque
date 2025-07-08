@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Plan;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class StorePlanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class StorePlanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => ['required'],
+            "price" => ['required', 'numeric'],
+            "duration" => ['required'],
+            "badge_icon" => ['required'],
+            "button_text" => ['required'],
+            "is_actived" => ['required', 'numeric'],
+            "order_number" => ['required', 'numeric'],
+            "features" => ['array'],
+            "features.*" => ['required']
         ];
     }
 }

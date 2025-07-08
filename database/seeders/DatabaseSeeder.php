@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             HomeContentSeeder::class,
             ClientsSeeder::class,
-            OfferContentSeeder::class
+            OfferContentSeeder::class,
+            PlanSeeder::class
         ]);
     }
 }
