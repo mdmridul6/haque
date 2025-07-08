@@ -19,72 +19,87 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Work Prcess Edit</h4>
+                    <h4>Plan Edit</h4>
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ route('admin.work-process.update',['work_process'=>$workProcess->id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.plan.update', ['plan' => $plan->id]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
-                        @method("PUT")
+                        @method('PUT')
                         <div class="row">
 
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="button_title" label="Button Title" :value="$workProcess->button_title" />
+                                    <x-text-input name="title" :value="$plan->title" label="Title" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="process_title" label="Process Title" :value="$workProcess->process_title" />
+                                    <x-text-input name="price" :value="$plan->price" label="Price" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-area name="process_description" label="Process Description" :value="$workProcess->process_description" />
+                                    <x-select-option name="duration" :value="$plan->duration" label="Duration" :options="$duration"
+                                        valueField="duration" titleField="name" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-file-uploder name="image" label="Thumble" :image_url="$workProcess->image" />
+                                    <x-icon-picker name="badge_icon" :value="$plan->badge_icon" label="Button Title" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <x-text-input name="button_text" :value="$plan->button_text" label="Button Title" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_1_title" :required="false" label="Step 1 Title"
-                                        :value="$workProcess->type_1_title" />
+                                    <label class="form-label fw-bold">Status</label>
+                                    <select class="form-select form-control" name="is_actived" id="">
+                                        <option @selected($plan->is_actived) value="1">Active</option>
+                                        <option @selected(!$plan->is_actived) value="0">Inactive</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="type_1_sub_title" :required="false" label="Step 1 Sort Description"
-                                        :value="$workProcess->type_1_sub_title" />
+                                    <x-text-input name="order_number" label="Order Number" :value="$plan->is_actived" />
                                 </div>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_2_title" :required="false" label="Step 2 Title"
-                                        :value="$workProcess->type_2_title" />
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Features</label>
+                                    @if (isset($plan?->features) && count($plan?->features))
+                                        <div id="feature-wrapper">
+                                            @foreach ($plan?->features as $features)
+                                                <div class="input-group mb-2">
+                                                    <input type="text" name="features[]" class="form-control"
+                                                        placeholder="Enter a feature" value="{{ $features }}">
+                                                    <button type="button"
+                                                        class="btn btn-danger remove-feature">Remove</button>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <div id="feature-wrapper">
+                                            <div class="input-group mb-2">
+                                                <input type="text" name="features[]" class="form-control"
+                                                    placeholder="Enter a feature">
+                                                <button type="button" class="btn btn-danger remove-feature">Remove</button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <button type="button" id="add-feature" class="btn btn-outline-primary btn-sm">+ Add
+                                        Feature</button>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_2_sub_title" :required="false" label="Step 2 Sort Description"
-                                        :value="$workProcess->type_2_sub_title" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_3_title" :required="false" label="Step 3 Title"
-                                        :value="$workProcess->type_3_title" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-text-input name="type_3_sub_title" :required="false"
-                                        label="Step 3 Sort Description" :value="$workProcess->type_3_sub_title" />
-                                </div>
-                            </div>
+
                         </div>
 
 
@@ -103,4 +118,21 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#add-feature').click(function() {
+                $('#feature-wrapper').append(`
+            <div class="input-group mb-2">
+                <input type="text" name="features[]" class="form-control" placeholder="Enter a feature">
+                <button type="button" class="btn btn-danger remove-feature">Remove</button>
+            </div>
+        `);
+            });
+
+            // Remove feature
+            $(document).on('click', '.remove-feature', function() {
+                $(this).closest('.input-group').remove();
+            });
+        });
+    </script>
 @endpush

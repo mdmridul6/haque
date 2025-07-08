@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Start Banner
-                                            ============================================= -->
+                                                ============================================= -->
     <div class="banner-area text-center text-normal text-light shadow dark bg-fixed" id="home"
         style="background-image: url({{ asset($content?->banner_image) }});">
         <div class="box-table">
@@ -32,7 +32,7 @@
     <!-- End Banner -->
 
     <!-- Start Companies Area
-                                            ============================================= -->
+                                                ============================================= -->
     <div class="companies-area default-padding" id="about">
         <div class="container">
             <div class="row">
@@ -226,7 +226,7 @@
     <!-- End We Offer --> --}}
 
     <!-- Start Overview
-                                            ============================================= -->
+                                                ============================================= -->
 
 
     @if (isset($workProcesses) && count($workProcesses) > 0)
@@ -247,7 +247,7 @@
                             <ul class="nav nav-pills">
 
                                 @foreach ($workProcesses as $workProcess)
-                                    <li @if($loop->first) class="active" @endif>
+                                    <li @if ($loop->first) class="active" @endif>
 
                                         <a data-toggle="tab" href="#{{ Str::slug($workProcess?->button_title) }}"
                                             aria-expanded="{{ $loop->first ? 'true' : 'false' }}">
@@ -264,7 +264,8 @@
                             <div class="tab-content">
                                 @foreach ($workProcesses as $workProcess)
                                     <!-- Start Single Item -->
-                                    <div id="{{ Str::slug($workProcess?->button_title) }}" class="tab-pane fade @if($loop->first) active @endif in">
+                                    <div id="{{ Str::slug($workProcess?->button_title) }}"
+                                        class="tab-pane fade @if ($loop->first) active @endif in">
                                         <div class="col-md-6 thumb">
                                             <img src="{{ asset($workProcess?->image) }}" alt="Thumb">
                                         </div>
@@ -315,7 +316,7 @@
     <!-- End Overview -->
 
     <!-- Start Fun Factor
-                                            ============================================= -->
+                                                ============================================= -->
     <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
         style="background-image: url({{ asset('frontend/assets/img/2440x1578.png') }});">
         <div class="container">
@@ -364,102 +365,111 @@
     </div>
     <!-- End Fun Factor -->
 
-    <!-- Start Pricing Area
-                                            ============================================= -->
-    <div id="pricing" class="pricing-area bg-gray default-padding-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>Pricing <span>Plan</span></h2>
-                        <h4>List of our pricing packages</h4>
+
+
+
+    @if (isset($plan) && count($plan) > 0)
+        <!-- Start Pricing Area
+                                                ============================================= -->
+        <div id="pricing" class="pricing-area bg-gray default-padding-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>Pricing <span>Plan</span></h2>
+                            <h4>List of our pricing packages</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="pricing pricing-simple text-center">
-                    <div class="col-md-4">
-                        <div class="pricing-item">
-                            <ul>
-                                <li class="icon">
-                                    <i class="flaticon-start"></i>
-                                </li>
-                                <li class="pricing-header">
-                                    <h4>Trial Version</h4>
-                                    <h2>Free</h2>
-                                </li>
-                                <li>Demo file <span data-toggle="tooltip" data-placement="top"
-                                        title="Available on pro version"><i class="fas fa-info-circle"></i></span></li>
-                                <li>Update</li>
-                                <li>File compressed</li>
-                                <li>Commercial use</li>
-                                <li>Support <span data-toggle="tooltip" data-placement="top"
-                                        title="Available on pro version"><i class="fas fa-info-circle"></i></span></li>
-                                <li>2 database</li>
-                                <li>Documetation <span data-toggle="tooltip" data-placement="top"
-                                        title="Available on pro version"><i class="fas fa-info-circle"></i></span></li>
-                                <li class="footer">
-                                    <a class="btn btn-dark border btn-sm" href="#">Try for free</a>
-                                </li>
-                            </ul>
+                <div class="row">
+                    <div class="pricing pricing-simple text-center">
+                        <div class="col-md-4">
+                            <div class="pricing-item">
+                                <ul>
+                                    <li class="icon">
+                                        <i class="flaticon-start"></i>
+                                    </li>
+                                    <li class="pricing-header">
+                                        <h4>Trial Version</h4>
+                                        <h2>Free</h2>
+                                    </li>
+                                    <li>Demo file <span data-toggle="tooltip" data-placement="top"
+                                            title="Available on pro version"><i class="fas fa-info-circle"></i></span>
+                                    </li>
+                                    <li>Update</li>
+                                    <li>File compressed</li>
+                                    <li>Commercial use</li>
+                                    <li>Support <span data-toggle="tooltip" data-placement="top"
+                                            title="Available on pro version"><i class="fas fa-info-circle"></i></span>
+                                    </li>
+                                    <li>2 database</li>
+                                    <li>Documetation <span data-toggle="tooltip" data-placement="top"
+                                            title="Available on pro version"><i class="fas fa-info-circle"></i></span>
+                                    </li>
+                                    <li class="footer">
+                                        <a class="btn btn-dark border btn-sm" href="#">Try for free</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="pricing-item active">
-                            <ul>
-                                <li class="icon">
-                                    <i class="flaticon-quality-badge"></i>
-                                </li>
-                                <li class="pricing-header">
-                                    <h4>Regular</h4>
-                                    <h2><sup>$</sup>29 <sub>/ Year</sub></h2>
-                                </li>
-                                <li>Demo file</li>
-                                <li>Update <span data-toggle="tooltip" data-placement="top"
-                                        title="Only for extended licence"><i class="fas fa-info-circle"></i></span></li>
-                                <li>File compressed</li>
-                                <li>Commercial use</li>
-                                <li>Support <span data-toggle="tooltip" data-placement="top"
-                                        title="Only for extended licence"><i class="fas fa-info-circle"></i></span></li>
-                                <li>5 database</li>
-                                <li>Documetation</li>
-                                <li class="footer">
-                                    <a class="btn btn-theme effect btn-sm" href="#">Get Started</a>
-                                </li>
-                            </ul>
+                        <div class="col-md-4">
+                            <div class="pricing-item active">
+                                <ul>
+                                    <li class="icon">
+                                        <i class="flaticon-quality-badge"></i>
+                                    </li>
+                                    <li class="pricing-header">
+                                        <h4>Regular</h4>
+                                        <h2><sup>$</sup>29 <sub>/ Year</sub></h2>
+                                    </li>
+                                    <li>Demo file</li>
+                                    <li>Update <span data-toggle="tooltip" data-placement="top"
+                                            title="Only for extended licence"><i class="fas fa-info-circle"></i></span>
+                                    </li>
+                                    <li>File compressed</li>
+                                    <li>Commercial use</li>
+                                    <li>Support <span data-toggle="tooltip" data-placement="top"
+                                            title="Only for extended licence"><i class="fas fa-info-circle"></i></span>
+                                    </li>
+                                    <li>5 database</li>
+                                    <li>Documetation</li>
+                                    <li class="footer">
+                                        <a class="btn btn-theme effect btn-sm" href="#">Get Started</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="pricing-item">
-                            <ul>
-                                <li class="icon">
-                                    <i class="flaticon-value"></i>
-                                </li>
-                                <li class="pricing-header">
-                                    <h4>Extended</h4>
-                                    <h2><sup>$</sup>59 <sub>/ Year</sub></h2>
-                                </li>
-                                <li>Demo file</li>
-                                <li>Update</li>
-                                <li>File compressed</li>
-                                <li>Commercial use</li>
-                                <li>Support</li>
-                                <li>8 database</li>
-                                <li>Documetation</li>
-                                <li class="footer">
-                                    <a class="btn btn-dark border btn-sm" href="#">Get Started</a>
-                                </li>
-                            </ul>
+                        <div class="col-md-4">
+                            <div class="pricing-item">
+                                <ul>
+                                    <li class="icon">
+                                        <i class="flaticon-value"></i>
+                                    </li>
+                                    <li class="pricing-header">
+                                        <h4>Extended</h4>
+                                        <h2><sup>$</sup>59 <sub>/ Year</sub></h2>
+                                    </li>
+                                    <li>Demo file</li>
+                                    <li>Update</li>
+                                    <li>File compressed</li>
+                                    <li>Commercial use</li>
+                                    <li>Support</li>
+                                    <li>8 database</li>
+                                    <li>Documetation</li>
+                                    <li class="footer">
+                                        <a class="btn btn-dark border btn-sm" href="#">Get Started</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Pricing Area -->
-
+        <!-- End Pricing Area -->
+    @endif
     <!-- Start Team
-                                            ============================================= -->
+                                                ============================================= -->
     <div id="team" class="team-area default-padding bottom-less">
         <div class="container">
             <div class="row">
@@ -627,7 +637,7 @@
     <!-- End Team -->
 
     <!-- Start Testimonials
-                                            ============================================= -->
+                                                ============================================= -->
     <div class="testimonials-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -705,7 +715,7 @@
     <!-- End Testimonials -->
 
     <!-- Start Faq
-                                            ============================================= -->
+                                                ============================================= -->
     <div class="faq-area default-padding">
         <div class="container">
             <div class="row">
@@ -849,7 +859,7 @@
     <!-- End Faq  -->
 
     <!-- Start Blog
-                                            ============================================= -->
+                                                ============================================= -->
     <div id="blog" class="blog-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -1003,7 +1013,7 @@
     <!-- End Blog -->
 
     <!-- Start Contact Area
-                                            ============================================= -->
+                                                ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="row">
@@ -1105,7 +1115,7 @@
     <!-- End Contact -->
 
     <!-- Start Google Maps
-                                            ============================================= -->
+                                                ============================================= -->
     <div class="maps-area">
         <div class="container-full">
             <div class="row">

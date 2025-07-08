@@ -116,7 +116,7 @@
 		}
 	}
 }
-  
+
 .badge-dark {
 	color: $white;
 	background-color: $dark;
@@ -131,7 +131,7 @@
 }
 
   // gardient badges styles
-  
+
 .badge-gradient-primary {
 	color: $white;
 	background: linear-gradient(to bottom right, $primary, #629cec);
@@ -176,7 +176,7 @@
 	color: $white;
 	background-image: linear-gradient(to right, #8a56e6 0, #6f3cca 100%);
 }
-  
+
 
 .badge-white {
 	color: #e8e3e3;
@@ -325,17 +325,17 @@
 	font-size: 12px;
 	font-weight: bold;
 	position: relative;
-	inset-inline-end: -47px;
+	inset-inline-end: -29px;
 	inset-block-start: 0px;
 	white-space: nowrap;
-	-ms-transform: rotate(30deg);
+	-ms-transform: rotate(40deg);
 	-o-transform: rotate(360deg);
-	-webkit-transform: rotate(30deg);
-	transform: rotate(30deg);
+	-webkit-transform: rotate(40deg);
+	transform: rotate(40deg);
 }
 
 .offer-content {
 	padding: 20px;
 }
-  
+
 /*-----Badges-----*/

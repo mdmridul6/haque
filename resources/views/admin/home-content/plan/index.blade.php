@@ -29,37 +29,42 @@
 
 
                     <div class="row">
-                        <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 my-2 ">
-                            <div class="card text-center border-success rounded-0 shadow mt-5">
-                                <div
-                                    class="position-absolute start-50 translate-middle text-light rounded-circle px-5 py-3 bg-success">
-                                    <i class="bi bi-gear-fill fs-1"></i>
-                                </div>
-                                <div class="card-body mt-5">
-                                    <h2 class="pt-2 fw-bold">Pro</h2>
-                                    <h3 class="card-text  pt-2"><x-taka>2</x-taka></h3>
 
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">An item</li>
-                                        <li class="list-group-item">A second item</li>
-                                        <li class="list-group-item">A third item</li>
-                                        <li class="list-group-item">A fourth item</li>
-                                        <li class="list-group-item">And a fifth one</li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-flex justify-content-evenly">
-                                        <x-edit-button href="{{ route('admin.work-process.edit', 1) }}" />
-                                        <x-show-button href="{{ route('admin.work-process.show', 1) }}" />
-                                        <x-delete-button href="{{ route('admin.work-process.destroy', 1) }}" />
+                        @foreach ($plans as $plan)
+                            <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 my-2 ">
+                                <div class="offer {{ $plan?->is_actived ? 'offer-success' : 'offer-default' }} text-center rounded-0 shadow mt-5">
+                                    <div class="shape">
+                                        <div class="shape-text mt-2  me-2">
+                                            {{ $plan?->is_actived ? 'Top' : 'Regular' }}
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="position-absolute start-50 translate-middle text-light rounded-circle px-5 py-3 {{ $plan?->is_actived ? 'bg-success' : 'bg-gray-dark' }}">
+                                        <i class="{{ $plan?->badge_icon }} fs-1"></i>
+                                    </div>
+                                    <div class="card-body mt-5">
+                                        <h2 class="pt-2 fw-bold">{{ $plan?->title }}</h2>
+                                        <h3 class="card-text  pt-2"><x-taka>{{ $plan?->price }}/</x-taka><span
+                                                class="text-title">{{ Str::ucfirst($plan?->duration) }}</span></h3>
+
+                                        <ul class="list-group list-group-flush">
+                                            @foreach ($plan?->features as $item)
+                                                <li class="list-group-item">{{ $item }}</li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-evenly">
+                                            <x-edit-button href="{{ route('admin.plan.edit', $plan?->id) }}" />
+                                            {{-- <x-show-button href="{{ route('admin.plan.show', $plan?->id) }}" /> --}}
+                                            <x-delete-button href="{{ route('admin.plan.destroy', $plan?->id) }}" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-
-
-
 
 
 

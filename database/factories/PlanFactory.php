@@ -23,7 +23,7 @@ class PlanFactory extends Factory
             'price' => '29',
             'duration' => 'Monthly',
             'badge_icon' => 'bi bi-gear-fill fs-1',
-            'features' => '',
+            'features' => [],
             'button_text' => 'Get Started',
             'is_actived' => true,
             'order_number' => 1,

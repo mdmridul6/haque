@@ -28,7 +28,7 @@ class PlanController extends Controller
     public function index()
     {
         return view('admin.home-content.plan.index', [
-            'plans' => Plan::all(),
+            'plans' => Plan::orderBy('order_number','asc')->get(),
             'pageTitle' => "Plan List"
         ]);
     }
