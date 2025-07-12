@@ -1,7 +1,7 @@
 @props([
     'label',
     'name',
-    'required' => false,
+    'required' => true,
     'image_url' => null,
     'multiple' => false,
     'centered' => false,
@@ -13,7 +13,7 @@
 <div>
     <div class="col-sm-12 col-md-12 mb-4 mb-lg-0 @if ($centered) mx-auto @endif">
         @isset($label)
-            <label class="form-label" for="{{ $name }}">{{ $label }}</label>
+            <label class="form-label" for="{{ $name }}">{{ $label }} @if ($required) <span class="text-danger">*</span> @endif</label>
         @endisset
         <div type="file" id="{{ $name }}" name="{{ $name }}" class="dropify"
             @if ($multiple) multiple @endif></div>

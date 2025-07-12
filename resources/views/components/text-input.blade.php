@@ -1,7 +1,7 @@
 @props(['type' => 'text', 'label', 'name', 'value', 'placeholder', 'required' => true, 'autocomplete' => false])
 
 @isset($label)
-    <label for="{{ $name }}">{{ $label }}  @if ($required) <span class="text-danger">*</span> @endif</label>
+    <label for="{{ $name }}">{!! $label !!}  @if ($required) <span class="text-danger">*</span> @endif</label>
 @endisset
 <input type="{{ $type }}" class="form-control @error($name)border-danger @enderror" title="{{ $label ?? $name }}"
     id="{{ $name }}" name="{{ $name }}"

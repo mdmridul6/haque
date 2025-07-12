@@ -8,7 +8,9 @@ use App\Http\Controllers\Admin\OfferContentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfileConreoller;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WorkProcessController;
 use App\Http\Controllers\Authenticate\AuthenticateController;
@@ -75,6 +77,8 @@ Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function ()
 
     Route::resource('work-process', WorkProcessController::class);
     Route::resource('plan', PlanController::class);
+    Route::resource('team', TeamController::class);
+    Route::resource('review', ReviewController::class);
 });
 
 

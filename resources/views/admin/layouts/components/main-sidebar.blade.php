@@ -142,6 +142,10 @@
                                                     href="{{ route('admin.work-process.index') }}">Work Prosess Section</a></li>
                                             <li><a class="slide-item"
                                                     href="{{ route('admin.plan.index') }}">Plan</a></li>
+                                            <li><a class="slide-item"
+                                                    href="{{ route('admin.team.index') }}">Team</a></li>
+                                            <li><a class="slide-item"
+                                                    href="{{ route('admin.review.index') }}">Review</a></li>
                                         </ul>
                                     </div>
                                 </div>
