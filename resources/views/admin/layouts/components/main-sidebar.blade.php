@@ -146,6 +146,10 @@
                                                     href="{{ route('admin.team.index') }}">Team</a></li>
                                             <li><a class="slide-item"
                                                     href="{{ route('admin.review.index') }}">Review</a></li>
+                                            <li><a class="slide-item"
+                                                    href="{{ route('admin.faq.index') }}">Faq</a></li>
+                                            <li>
+                                                
                                         </ul>
                                     </div>
                                 </div>

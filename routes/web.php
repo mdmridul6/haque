@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutUsContentController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\OfferContentController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -79,6 +80,7 @@ Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function ()
     Route::resource('plan', PlanController::class);
     Route::resource('team', TeamController::class);
     Route::resource('review', ReviewController::class);
+    Route::resource('faq', FaqController::class);
 });
 
 
