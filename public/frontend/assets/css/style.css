@@ -2401,6 +2401,7 @@ body,
     text-align: center;
     top: 0;
     width: 100px;
+    border: 3px solid #ffffff;
 }
 
 .pricing-item .icon::after {
@@ -2444,24 +2445,27 @@ body,
     font-weight: 600;
     text-transform: uppercase;
     color: #323a45;
+    margin-top: 15px;
+    font-size: 25px;
+
 }
 
-.pricing-header h2 {
+.pricing-header h3 {
     color: #323a45;
-    font-size: 50px;
+    font-size: 35px;
     font-weight: 900;
     letter-spacing: -1px;
     line-height: 1;
     margin-bottom: 0;
 }
 
-.pricing-header h2 sup {
+.pricing-header h3 sup {
     font-size: 24px;
     font-weight: 500;
     top: -25px;
 }
 
-.pricing-header h2 sub {
+.pricing-header h3 sub {
     font-size: 18px;
     font-weight: 400;
     margin-left: -5px;
@@ -2500,7 +2504,7 @@ body,
     background: #ff9800 none repeat scroll 0 0;
 }
 
-.pricing-area .pricing-item.active .pricing-header h2,
+.pricing-area .pricing-item.active .pricing-header h3,
 .pricing-area .pricing-item.active .pricing-header h4,
 .pricing-area .pricing-item.active .pricing-header span {
     color: #ffffff;
@@ -2521,9 +2525,24 @@ body,
     cursor: help;
 }
 
-.pricing-item li i.fa-times {
+.pricing-item .pricing-item-wrapper li i.fa-times {
     color: #e22626;
 }
+
+.pricing-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pricing-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between !important;
+    margin-bottom: 60px;
+}
+
 
 /* ==============================================================
      # Team

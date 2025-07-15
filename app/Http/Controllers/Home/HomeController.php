@@ -19,7 +19,7 @@ class HomeController extends Controller
         $offerContents = OfferContent::get();
         $clients = Clients::get();
         $workProcesses = WorkProcess::get();
-        $plans = Plan::get();
+        $plans = Plan::where('is_actived', true)->get();
         return view('home.index', compact('content', 'offerContents', 'clients', 'workProcesses','plans'));
     }
 }

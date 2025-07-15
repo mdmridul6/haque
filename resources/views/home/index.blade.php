@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Start Banner
-                                                ============================================= -->
+                                                            ============================================= -->
     <div class="banner-area text-center text-normal text-light shadow dark bg-fixed" id="home"
         style="background-image: url({{ asset($content?->banner_image) }});">
         <div class="box-table">
@@ -32,7 +32,7 @@
     <!-- End Banner -->
 
     <!-- Start Companies Area
-                                                ============================================= -->
+                                                            ============================================= -->
     <div class="companies-area default-padding" id="about">
         <div class="container">
             <div class="row">
@@ -226,7 +226,7 @@
     <!-- End We Offer --> --}}
 
     <!-- Start Overview
-                                                ============================================= -->
+                                                            ============================================= -->
 
 
     @if (isset($workProcesses) && count($workProcesses) > 0)
@@ -316,7 +316,7 @@
     <!-- End Overview -->
 
     <!-- Start Fun Factor
-                                                ============================================= -->
+                                                            ============================================= -->
     <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
         style="background-image: url({{ asset('frontend/assets/img/2440x1578.png') }});">
         <div class="container">
@@ -368,108 +368,91 @@
 
 
 
-    @if (isset($plan) && count($plan) > 0)
-        <!-- Start Pricing Area
-                                                ============================================= -->
-        <div id="pricing" class="pricing-area bg-gray default-padding-top">
+    @if (isset($plans) && count($plans) > 0)
+        <section id="pricing" class="pricing-area bg-gray default-padding-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="site-heading text-center">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="site-heading">
                             <h2>Pricing <span>Plan</span></h2>
                             <h4>List of our pricing packages</h4>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="pricing pricing-simple text-center">
-                        <div class="col-md-4">
-                            <div class="pricing-item">
-                                <ul>
-                                    <li class="icon">
-                                        <i class="flaticon-start"></i>
-                                    </li>
-                                    <li class="pricing-header">
-                                        <h4>Trial Version</h4>
-                                        <h2>Free</h2>
-                                    </li>
-                                    <li>Demo file <span data-toggle="tooltip" data-placement="top"
-                                            title="Available on pro version"><i class="fas fa-info-circle"></i></span>
-                                    </li>
-                                    <li>Update</li>
-                                    <li>File compressed</li>
-                                    <li>Commercial use</li>
-                                    <li>Support <span data-toggle="tooltip" data-placement="top"
-                                            title="Available on pro version"><i class="fas fa-info-circle"></i></span>
-                                    </li>
-                                    <li>2 database</li>
-                                    <li>Documetation <span data-toggle="tooltip" data-placement="top"
-                                            title="Available on pro version"><i class="fas fa-info-circle"></i></span>
-                                    </li>
-                                    <li class="footer">
-                                        <a class="btn btn-dark border btn-sm" href="#">Try for free</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="pricing-item active">
-                                <ul>
-                                    <li class="icon">
-                                        <i class="flaticon-quality-badge"></i>
-                                    </li>
-                                    <li class="pricing-header">
-                                        <h4>Regular</h4>
-                                        <h2><sup>$</sup>29 <sub>/ Year</sub></h2>
-                                    </li>
-                                    <li>Demo file</li>
-                                    <li>Update <span data-toggle="tooltip" data-placement="top"
-                                            title="Only for extended licence"><i class="fas fa-info-circle"></i></span>
-                                    </li>
-                                    <li>File compressed</li>
-                                    <li>Commercial use</li>
-                                    <li>Support <span data-toggle="tooltip" data-placement="top"
-                                            title="Only for extended licence"><i class="fas fa-info-circle"></i></span>
-                                    </li>
-                                    <li>5 database</li>
-                                    <li>Documetation</li>
-                                    <li class="footer">
-                                        <a class="btn btn-theme effect btn-sm" href="#">Get Started</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="pricing-item">
-                                <ul>
-                                    <li class="icon">
-                                        <i class="flaticon-value"></i>
-                                    </li>
-                                    <li class="pricing-header">
-                                        <h4>Extended</h4>
-                                        <h2><sup>$</sup>59 <sub>/ Year</sub></h2>
-                                    </li>
-                                    <li>Demo file</li>
-                                    <li>Update</li>
-                                    <li>File compressed</li>
-                                    <li>Commercial use</li>
-                                    <li>Support</li>
-                                    <li>8 database</li>
-                                    <li>Documetation</li>
-                                    <li class="footer">
-                                        <a class="btn btn-dark border btn-sm" href="#">Get Started</a>
-                                    </li>
-                                </ul>
-                            </div>
+
+                @php
+                    $total = count($plans);
+                    $itemsPerRow = 3;
+                    $fullRows = floor($total / $itemsPerRow);
+                    $lastRowCount = $total % $itemsPerRow;
+                @endphp
+
+                {{-- Full rows --}}
+                @for ($i = 0; $i < $fullRows * $itemsPerRow; $i++)
+                    @if ($i % $itemsPerRow === 0)
+                        <div class="row text-center">
+                    @endif
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="pricing-item {{ $plans[$i]->is_actived ? 'active' : '' }}">
+                            <ul>
+                                <li class="icon"><i class="{{ $plans[$i]->badge_icon }}"></i></li>
+                                <li class="pricing-header">
+                                    <h4>{{ $plans[$i]->title }}</h4>
+                                    <h3><sup><x-taka></x-taka></sup>{{ $plans[$i]->price }}
+                                        <sub>{{ $plans[$i]->duration }}</sub>
+                                    </h3>
+                                </li>
+
+
+                                @foreach ($plans[$i]->features as $feature)
+                                    <li>{{ $feature }}</li>
+                                @endforeach
+                                <li class="footer"><a class="btn btn-theme effect btn-sm" href="#">Get Started</a>
+                                </li>
+
+                            </ul>
                         </div>
                     </div>
-                </div>
+
+                    @if ($i % $itemsPerRow === $itemsPerRow - 1)
             </div>
-        </div>
-        <!-- End Pricing Area -->
     @endif
-    <!-- Start Team
-                                                ============================================= -->
+    @endfor
+
+    {{-- Last incomplete row (1–3 items, center aligned) --}}
+    @if ($lastRowCount > 0)
+        <div class="row text-center">
+            @php
+                $start = $fullRows * $itemsPerRow;
+                $offset = $lastRowCount === 1 ? 4.5 : ($lastRowCount === 2 ? 2 : ($lastRowCount === 3 ? 1.5 : 0));
+            @endphp
+
+            @for ($j = 0; $j < $lastRowCount; $j++)
+                <div class="col-md-4 col-sm-6 {{ $j === 0 && $offset ? 'col-md-offset-' . floor($offset) : '' }}">
+                    <div class="pricing-item {{ $plans[$start + $j]->is_actived ? 'active' : '' }}">
+                        <ul>
+                            <li class="icon"><i class="{{ $plans[$start + $j]->badge_icon }}"></i></li>
+                            <li class="pricing-header">
+                                <h4>{{ $plans[$start + $j]->title }}</h4>
+                                <h3><sup><x-taka></x-taka></sup>{{ $plans[$start + $j]->price }} <sub>
+                                        {{ $plans[$start + $j]->duration }}</sub></h3>
+                            </li>
+                            @foreach ($plans[$start + $j]->features as $feature)
+                                <li>{{ $feature }}</li>
+                            @endforeach
+                            <li class="footer"><a class="btn btn-theme effect btn-sm" href="#">Get Started</a></li>
+                        </ul>
+                    </div>
+                </div>
+            @endfor
+        </div>
+    @endif
+    </div>
+    </section>
+    @endif
+
+    <!-- Start Team ============================================= -->
     <div id="team" class="team-area default-padding bottom-less">
         <div class="container">
             <div class="row">
@@ -637,7 +620,7 @@
     <!-- End Team -->
 
     <!-- Start Testimonials
-                                                ============================================= -->
+                                                            ============================================= -->
     <div class="testimonials-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -715,7 +698,7 @@
     <!-- End Testimonials -->
 
     <!-- Start Faq
-                                                ============================================= -->
+                                                            ============================================= -->
     <div class="faq-area default-padding">
         <div class="container">
             <div class="row">
@@ -859,7 +842,7 @@
     <!-- End Faq  -->
 
     <!-- Start Blog
-                                                ============================================= -->
+                                                            ============================================= -->
     <div id="blog" class="blog-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -1013,7 +996,7 @@
     <!-- End Blog -->
 
     <!-- Start Contact Area
-                                                ============================================= -->
+                                                            ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="row">
@@ -1115,7 +1098,7 @@
     <!-- End Contact -->
 
     <!-- Start Google Maps
-                                                ============================================= -->
+                                                            ============================================= -->
     <div class="maps-area">
         <div class="container-full">
             <div class="row">

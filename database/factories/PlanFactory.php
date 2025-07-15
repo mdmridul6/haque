@@ -18,15 +18,18 @@ class PlanFactory extends Factory
     protected $model = Plan::class;
     public function definition()
     {
+
         return [
-            'title' => 'Regular',
-            'price' => '29',
-            'duration' => 'Monthly',
-            'badge_icon' => 'bi bi-gear-fill fs-1',
-            'features' => [],
-            'button_text' => 'Get Started',
+            'title' => $this->faker->word(),
+            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'duration' => '/Year',
+            'badge_icon' => 'bi bi-bar-chart-line',
+            'features' => ['Feature 1', 'Feature 2', 'Feature 3'],
+            'button_text' => 'GET STARTED',
+            // 'is_actived' => $this->faker->boolean(),
             'is_actived' => true,
-            'order_number' => 1,
+
+            'order_number' => $this->faker->numberBetween(1, 10),
         ];
     }
 }
