@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             TeamSeeder::class,
             UserSeeder::class,
             WorkProcessSeeder::class,
+            CategorySeeder::class,
+            TagSeeder::class,
+            BlogSeeder::class,
         ]);
     }
 }

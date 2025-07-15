@@ -23,17 +23,17 @@
     @if ($multiple) multiple @endif data-placeholder="Choose One" @if ($required) required @endif>
 
     @foreach ($options as $item)
-        <option value="{{ $item->$valueField }}"
+        <option value="{{ $item?->$valueField }}"
             @if ($multiple)
 
-            @if (in_array($item->name, old($name, $values ?? [])))
+            @if (in_array($item?->$valueField, old($name, $values ?? [])))
             selected
             @endif
 
 
             @else
 
-            @if (old($name,$values) == $item->$valueField) selected @endif
+            @if (old($name,$values) == $item?->$valueField) selected @endif
             @endif
 
 

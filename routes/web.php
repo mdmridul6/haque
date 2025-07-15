@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AboutUsContentController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HomeContentController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfileConreoller;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WorkProcessController;
@@ -81,6 +84,13 @@ Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function ()
     Route::resource('team', TeamController::class);
     Route::resource('review', ReviewController::class);
     Route::resource('faq', FaqController::class);
+
+
+
+    Route::resource('category', CategoryController::class);
+    Route::resource('tag', TagController::class);
+    Route::resource('blog', BlogController::class);
+
 });
 
 

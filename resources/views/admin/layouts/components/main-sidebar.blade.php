@@ -106,8 +106,8 @@
                                                     href="{{ route('admin.permission.index') }}">Permission</a></li>
                                             <li><a class="slide-item"
                                                     href="{{ route('admin.roles.index') }}">Roles</a></li>
-                                            <li><a class="slide-item"
-                                                    href="{{ route('admin.user.index') }}">Users</a></li>
+                                            <li><a class="slide-item" href="{{ route('admin.user.index') }}">Users</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -116,7 +116,35 @@
                     </ul>
                 </li>
 
-                 <li class="slide">
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="javascript:void(0)"><i
+                            class="side-menu__icon ri-article-line"></i>
+                            <span class="side-menu__label">Blogs</span><i
+                            class="angle fe fe-chevron-right"></i></a>
+                    <ul class="slide-menu">
+                        <li class="panel sidetab-menu">
+                            <div class="panel-body tabs-menu-body p-0 border-0">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="side1">
+                                        <ul class="sidemenu-list">
+                                            <li class="side-menu-label1"><a href="javascript:void(0)">Blogs</a>
+                                            </li>
+                                            <li><a class="slide-item" href="{{ route('admin.blog.index') }}">Blog</a>
+                                            </li>
+                                            <li><a class="slide-item"
+                                                    href="{{ route('admin.category.index') }}">Category</a></li>
+                                            <li><a class="slide-item" href="{{ route('admin.tag.index') }}">Tag</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="javascript:void(0)"><i
                             class="side-menu__icon ri-settings-line"></i><span
                             class="side-menu__label">Setting</span><i class="angle fe fe-chevron-right"></i></a>
@@ -128,28 +156,30 @@
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">Site Setting</a>
                                             </li>
+                                            <li><a class="slide-item" href="">Seo</a></li>
                                             <li><a class="slide-item"
-                                                    href="">Seo</a></li>
-                                            <li><a class="slide-item"
-                                                    href="{{ route('admin.home-content.index') }}">Home Content</a></li>
+                                                    href="{{ route('admin.home-content.index') }}">Home Content</a>
+                                            </li>
                                             <li><a class="slide-item"
                                                     href="{{ route('admin.banner.index') }}">Banner</a></li>
                                             <li><a class="slide-item"
-                                                    href="{{ route('admin.about-us-content.index') }}">About Us</a></li>
+                                                    href="{{ route('admin.about-us-content.index') }}">About Us</a>
+                                            </li>
+                                            <li><a class="slide-item" href="{{ route('admin.offer.index') }}">Offer
+                                                    Section</a></li>
                                             <li><a class="slide-item"
-                                                    href="{{ route('admin.offer.index') }}">Offer Section</a></li>
-                                            <li><a class="slide-item"
-                                                    href="{{ route('admin.work-process.index') }}">Work Prosess Section</a></li>
-                                            <li><a class="slide-item"
-                                                    href="{{ route('admin.plan.index') }}">Plan</a></li>
-                                            <li><a class="slide-item"
-                                                    href="{{ route('admin.team.index') }}">Team</a></li>
+                                                    href="{{ route('admin.work-process.index') }}">Work Prosess
+                                                    Section</a></li>
+                                            <li><a class="slide-item" href="{{ route('admin.plan.index') }}">Plan</a>
+                                            </li>
+                                            <li><a class="slide-item" href="{{ route('admin.team.index') }}">Team</a>
+                                            </li>
                                             <li><a class="slide-item"
                                                     href="{{ route('admin.review.index') }}">Review</a></li>
-                                            <li><a class="slide-item"
-                                                    href="{{ route('admin.faq.index') }}">Faq</a></li>
+                                            <li><a class="slide-item" href="{{ route('admin.faq.index') }}">Faq</a>
+                                            </li>
                                             <li>
-                                                
+
                                         </ul>
                                     </div>
                                 </div>
