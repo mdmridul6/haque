@@ -12,6 +12,13 @@ use Illuminate\View\View;
 
 class BannerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.banner')->only('index');
+        $this->middleware('permission:admin.banner.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.banner.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.banner.delete')->only('destroy');
+    }
 
     function index(): View
     {

@@ -14,6 +14,10 @@ class PlanController extends Controller
     protected $duration;
     public function __construct()
     {
+        $this->middleware('permission:admin.plan')->only('index');
+        $this->middleware('permission:admin.plan.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.plan.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.plan.delete')->only('destroy');
 
         $this->duration = (object)[
             (object)['duration' => 'yearly', 'name' => 'Yearly'],

@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.team')->only('index');
+        $this->middleware('permission:admin.team.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.team.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.team.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

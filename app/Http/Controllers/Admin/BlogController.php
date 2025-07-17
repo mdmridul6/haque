@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.blog')->only('index');
+        $this->middleware('permission:admin.blog.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.blog.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.blog.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

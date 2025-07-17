@@ -18,25 +18,12 @@ class RoleSeeder extends Seeder
     {
         // Create roles
         $admin = Role::firstOrCreate(['name' => 'admin']);
-        $editor = Role::firstOrCreate(['name' => 'editor']);
-        $viewer = Role::firstOrCreate(['name' => 'viewer']);
+
 
         // Get all permissions
         $allPermissions = Permission::all();
 
         // Assign all permissions to admin
         $admin->syncPermissions($allPermissions);
-
-        // Assign post & comment permissions to editor
-        $editorPermissions = $allPermissions->filter(function ($perm) {
-            return str_starts_with($perm->name, 'post.') || str_starts_with($perm->name, 'comment.');
-        });
-        $editor->syncPermissions($editorPermissions);
-
-        // Viewer only gets view permissions
-        $viewerPermissions = $allPermissions->filter(function ($perm) {
-            return str_ends_with($perm->name, '.view');
-        });
-        $viewer->syncPermissions($viewerPermissions);
     }
 }

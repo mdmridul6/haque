@@ -14,6 +14,13 @@ use Illuminate\View\View;
 class AboutUsContentController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('permission:admin.about-us-content')->only('index');
+        $this->middleware('permission:admin.about-us-content.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.about-us-content.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.about-us-content.delete')->only('destroy');
+    }
 
      function index(): View
     {

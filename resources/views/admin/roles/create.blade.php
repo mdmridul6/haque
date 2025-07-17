@@ -73,7 +73,7 @@
                                                             {{ isset($rolePermissions) && in_array($perm->name, $rolePermissions) ? 'checked' : '' }}
                                                             switch>
                                                         <label class="form-check-label"
-                                                            for="perm-{{ $perm->name }}">{{ Str::title(Str::replaceFirst('.', ' ', $perm->name)) }}</label>
+                                                            for="perm-{{ $perm->name }}">{{ Str::title(Str::replace('.', ' ', $perm->name)) }}</label>
                                                     </div>
                                                 @endforeach
                                             </div>

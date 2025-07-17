@@ -12,6 +12,11 @@ use Illuminate\View\View;
 
 class ProfileConreoller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.profile')->only('edit');
+        $this->middleware('permission:admin.profile.edit')->only('update');
+    }
 
 
     /**

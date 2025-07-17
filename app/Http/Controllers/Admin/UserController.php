@@ -17,6 +17,14 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.user')->only('index');
+        $this->middleware('permission:admin.user.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.user.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.user.delete')->only('destroy');
+        $this->middleware('permission:admin.user.change-password')->only(['changePassword']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -165,7 +173,7 @@ class UserController extends Controller
      * @param $request
      * @return void
      */
-    public function changePassword(UserPasswordRequest $request,User $user): RedirectResponse
+    public function changePassword($request,User $user): RedirectResponse
     {
 
         if ($request->has('password')) {

@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class WorkProcessController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.work-process')->only('index');
+        $this->middleware('permission:admin.work-process.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.work-process.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.work-process.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

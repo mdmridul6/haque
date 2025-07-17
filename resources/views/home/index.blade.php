@@ -179,7 +179,7 @@
                                             <h3>{{ $workProcess?->process_title }}
                                             </h3>
                                             <p>
-                                                {{ $workProcess?->process_description }}
+                                                {!! $workProcess?->process_description !!}
                                             </p>
 
                                             <ul>
@@ -229,10 +229,10 @@
             isset($content?->awards_won))
         <!-- Start Fun Factor============================================= -->
         <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
-            style="background-image: url({{ asset('frontend/assets/img/2440x1578.png') }});">
+            style="background-image: url({{ asset($content?->banner_image) }});">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 fun-fact-items">
+                    <div class="col-md-12 fun-fact-items">
                         <div class="row">
                             <div class="col-md-3 col-sm-3 item">
                                 <div class="fun-fact">
@@ -262,25 +262,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 subscribe">
-                        <h3>Stay update with us</h3>
-                        <p>
-                            Dried quick round it or order. Add past see west felt did any. Say out noise you taste merry
-                            plate
-                            you share. My resolve arrived is we chamber be removal.
-                        </p>
-                        <form action="#">
-                            <div class="input-group stylish-input-group">
-                                <input type="email" placeholder="Enter your e-mail here" class="form-control"
-                                    name="email">
-                                <span class="input-group-addon">
-                                    <button type="submit">
-                                        <i class="fa fa-paper-plane"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

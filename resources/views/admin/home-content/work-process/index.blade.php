@@ -43,8 +43,8 @@
                                         <td class="d-flex justify-content-evenly align-item-center">
                                             <x-edit-button
                                                 href="{{ route('admin.work-process.edit', ['work_process' => $workProcess->id]) }}" />
-                                            <x-show-button
-                                                href="{{ route('admin.work-process.show', ['work_process' => $workProcess->id]) }}" />
+                                            {{-- <x-show-button
+                                                href="{{ route('admin.work-process.show', ['work_process' => $workProcess->id]) }}" /> --}}
                                             <x-delete-button
                                                 href="{{ route('admin.work-process.destroy', ['work_process' => $workProcess->id]) }}" />
                                         </td>

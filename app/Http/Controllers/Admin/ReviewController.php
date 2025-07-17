@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.review')->only('index');
+        $this->middleware('permission:admin.review.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.review.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.review.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -138,7 +145,7 @@ class ReviewController extends Controller
         $review->name = $request->name;
         $review->designation = $request->designation;
         $review->review = $request->review;
-    
+
         $review->save();
 
 

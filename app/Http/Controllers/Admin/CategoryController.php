@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.category')->only('index');
+        $this->middleware('permission:admin.category.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.category.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.category.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('button_title')->default('Button Title');
             $table->string('process_title')->default('Engineered and Optimization by conveying. Him plate you allow built grave.');
-            $table->string('process_description')->default('Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, at.');
+            $table->text('process_description')->default('Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, at.');
             $table->string('image')->default('frontend/assets/img/800x800.png');
             $table->string('type_1_title')->default('Amazingly Simple Use')->nullable();
             $table->string('type_1_sub_title')->default('Certainty arranging am smallness by conveying')->nullable();

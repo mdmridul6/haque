@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.tag')->only('index');
+        $this->middleware('permission:admin.tag.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.tag.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.tag.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

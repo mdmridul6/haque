@@ -34,7 +34,7 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">Dashboard</a></li>
-                                            <li><a class="slide-item" href="{{ url('index') }}">index</a></li>
+                                            <li><a class="slide-item" href="{{ route('admin.dashboard.index') }}">index</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -42,52 +42,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon ri-menu-unfold-fill"></i>
-                        <span class="side-menu__label">Submenu items</span><i class="angle fe fe-chevron-right"></i></a>
-                    <ul class="slide-menu">
-                        <li class="panel sidetab-menu">
-                            <div class="panel-body tabs-menu-body p-0 border-0">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="side29">
-                                        <ul class="sidemenu-list">
-                                            <li class="side-menu-label1"><a href="javascript:void(0)">Submenu items</a>
-                                            </li>
-                                            <li><a href="javascript:void(0)" class="slide-item">Submenu-1</a></li>
-                                            <li class="sub-slide">
-                                                <a class="sub-side-menu__item" data-bs-toggle="sub-slide"
-                                                    href="javascript:void(0)"><span
-                                                        class="sub-side-menu__label">Submenu-2</span><i
-                                                        class="sub-angle fe fe-chevron-right"></i></a>
-                                                <ul class="sub-slide-menu">
-                                                    <li><a class="sub-slide-item"
-                                                            href="javascript:void(0)">Submenu-2.1</a></li>
-                                                    <li><a class="sub-slide-item"
-                                                            href="javascript:void(0)">Submenu-2.2</a></li>
-                                                    <li class="sub-slide2">
-                                                        <a class="sub-side-menu__item2" href="javascript:void(0)"
-                                                            data-bs-toggle="sub-slide2"><span
-                                                                class="sub-side-menu__label2">Submenu-2.3</span><i
-                                                                class="sub-angle2 fe fe-chevron-right"></i></a>
-                                                        <ul class="sub-slide-menu2">
-                                                            <li><a href="javascript:void(0)"
-                                                                    class="sub-slide-item2">Submenu-2.3.1</a></li>
-                                                            <li><a href="javascript:void(0)"
-                                                                    class="sub-slide-item2">Submenu-2.3.2</a></li>
-                                                            <li><a href="javascript:void(0)"
-                                                                    class="sub-slide-item2">Submenu-2.3.3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+
 
 
                 <li class="slide">
@@ -156,7 +111,7 @@
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">Site Setting</a>
                                             </li>
-                                            <li><a class="slide-item" href="">Seo</a></li>
+                                            {{-- <li><a class="slide-item" href="">Seo</a></li> --}}
                                             <li><a class="slide-item"
                                                     href="{{ route('admin.home-content.index') }}">Home Content</a>
                                             </li>

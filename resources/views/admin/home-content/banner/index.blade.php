@@ -48,7 +48,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <x-file-uploder label="Banner Image" :image_url="$content->banner_image" name="banner_image" />
+                                    <x-file-uploder label="Banner Image" :image_url="$content?->banner_image" name="banner_image" />
                                 </div>
                             </div>
                             <div class="btn-list text-end">

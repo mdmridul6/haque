@@ -31,7 +31,7 @@ class RoleController extends Controller
     public function create(): View
     {
         $permissions = Permission::all()->groupBy(function ($perm) {
-            return Str::headline(Str::before($perm->name, '.')); // Group by prefix
+            return Str::headline(Str::before(Str::remove('admin.',$perm->name),  '.')); // Group by prefix
         });
         return view('admin.roles.create', compact('permissions'));
     }
@@ -63,8 +63,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role): View
     {
-        $permissions = Permission::all()->groupBy(function ($perm) {
-            return Str::headline(Str::before($perm->name, '.')); // Group by prefix
+         $permissions = Permission::all()->groupBy(function ($perm) {
+            return Str::headline(Str::before(Str::remove('admin.',$perm->name),  '.')); // Group by prefix
         });
         $rolePermissions = $role->permissions->pluck('name')->toArray();
 

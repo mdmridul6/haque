@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class FaqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.faq')->only('index');
+        $this->middleware('permission:admin.faq.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.faq.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.faq.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

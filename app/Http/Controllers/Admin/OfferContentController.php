@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\DB;
 
 class OfferContentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.offer-content')->only('index');
+        $this->middleware('permission:admin.offer-content.create')->only(['create', 'store','storeContent','storeOffer']);
+        $this->middleware('permission:admin.offer-content.edit')->only(['edit', 'update','storeOfferUpdate']);
+        $this->middleware('permission:admin.offer-content.delete')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

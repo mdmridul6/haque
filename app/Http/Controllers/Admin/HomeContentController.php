@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class HomeContentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.home-content')->only('index');
+        $this->middleware('permission:admin.home-content.create')->only(['create', 'store']);
+        $this->middleware('permission:admin.home-content.edit')->only(['edit', 'update']);
+        $this->middleware('permission:admin.home-content.delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
