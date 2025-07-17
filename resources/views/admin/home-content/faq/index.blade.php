@@ -38,7 +38,7 @@
                                     <tr>
                                         <td>{{ $faq?->order }}</td>
                                         <td>{{ $faq?->question }}</td>
-                                        <td>{{ $faq?->answer }}</td>
+                                        <td>{{ Str::limit(strip_tags($faq?->answer), 50) }}</td>
                                         <td>
                                             <span class="badge {{ $faq?->status ? 'bg-success' : 'bg-danger' }}">
                                                 {{ $faq?->status ? 'Active' : 'Inactive' }}
@@ -47,7 +47,7 @@
                                         <td class="d-flex gap-2 justify-content-evenly">
                                             <x-edit-button href="{{ route('admin.faq.edit', ['faq' => $faq?->id]) }}" />
                                             <x-delete-button href="{{ route('admin.faq.destroy', ['faq' => $faq?->id]) }}" />
-                                                
+
                                         </td>
                                     </tr>
                                 @endforeach

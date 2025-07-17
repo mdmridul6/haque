@@ -1,8 +1,7 @@
 @extends('home.layouts.app')
 
 @section('content')
-    <!-- Start Banner
-                                                            ============================================= -->
+    <!-- Start Banner============================================= -->
     <div class="banner-area text-center text-normal text-light shadow dark bg-fixed" id="home"
         style="background-image: url({{ asset($content?->banner_image) }});">
         <div class="box-table">
@@ -31,32 +30,37 @@
     </div>
     <!-- End Banner -->
 
-    <!-- Start Companies Area
-                                                            ============================================= -->
-    <div class="companies-area default-padding" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 info">
-                    <h3>{!! $content->about_us_title !!}</h3>
-                    <p>
-                        {{ $content->about_us_subtitle }}
-                    </p>
-                </div>
-                <div class="col-md-6 clients">
-                    <div class="clients-items owl-carousel owl-theme text-center">
 
-                        @foreach ($clients as $client)
-                            <div class="single-item">
-                                <a href="#"><img src="{{ asset($client->images) }}" alt="Clients"></a>
-                            </div>
-                        @endforeach
-
+    @if (isset($content?->about_us_title) && isset($content?->about_us_subtitle))
+        <!-- Start Companies Area============================================= -->
+        <div class="companies-area default-padding" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-{{ isset($clients) ? 6 : 12 }} info">
+                        <h3>{!! $content?->about_us_title !!}</h3>
+                        <p>
+                            {{ $content?->about_us_subtitle }}
+                        </p>
                     </div>
+                    @if (isset($clients) && count($clients) > 0)
+                        <div class="col-md-6 clients">
+                            <div class="clients-items owl-carousel owl-theme text-center">
+
+                                @foreach ($clients as $client)
+                                    <div class="single-item">
+                                        <a href="#"><img src="{{ asset($client->images) }}" alt="Clients"></a>
+                                    </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Companies Area -->
+        <!-- End Companies Area -->
+    @endif
+
 
 
 
@@ -100,7 +104,7 @@
     @endif
     @endfor
 
-    {{-- Handle last row with 1 or 2 items --}}
+
     @if ($lastRowCount > 0)
         <div class="row text-center">
             @php
@@ -126,107 +130,9 @@
     @endif
 
 
-    {{-- <!-- Start We Offer
-                    ============================================= -->
-    <div id="features" class="we-offer-area item-border-less bg-gray default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>What we <span>Offer</span></h2>
-                        <h4>Understanding the easy to use process</h4>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="our-offer-items less-carousel">
-                    <!-- Single Item -->
-                    <div class="col-md-4 col-sm-6 equal-height">
-                        <div class="item">
-                            <span class="number">1</span>
-                            <i class="flaticon-sketch"></i>
-                            <h4>Project creation</h4>
-                            <p>
-                                Downs those still witty an balls so chief so. Moment an little remain no lively
-                            </p>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
 
-                    <!-- Single Item -->
-                    <div class="col-md-4 col-sm-6 equal-height">
-                        <div class="item">
-                            <span class="number">2</span>
-                            <i class="bi bi-house-door"></i>
-                            <h4>Software Development</h4>
-                            <p>
-                                Downs those still witty an balls so chief so. Moment an little remain no lively
-                            </p>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-
-                    <!-- Single Item -->
-                    <div class="col-md-4 col-sm-6 equal-height">
-                        <div class="item">
-                            <span class="number">3</span>
-                            <i class="flaticon-collaboration"></i>
-                            <h4>Porject Management</h4>
-                            <p>
-                                Downs those still witty an balls so chief so. Moment an little remain no lively
-                            </p>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-
-                    <!-- Single Item -->
-                    <div class="col-md-4 col-sm-6 equal-height">
-                        <div class="item">
-                            <span class="number">4</span>
-                            <i class="flaticon-speedometer"></i>
-                            <h4>Project Implement</h4>
-                            <p>
-                                Downs those still witty an balls so chief so. Moment an little remain no lively
-                            </p>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-
-                    <!-- Single Item -->
-                    <div class="col-md-4 col-sm-6 equal-height">
-                        <div class="item">
-                            <span class="number">5</span>
-                            <i class="flaticon-refresh"></i>
-                            <h4>Software Update</h4>
-                            <p>
-                                Downs those still witty an balls so chief so. Moment an little remain no lively
-                            </p>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-
-                    <!-- Single Item -->
-                    <div class="col-md-4 col-sm-6 equal-height">
-                        <div class="item">
-                            <span class="number">6</span>
-                            <i class="flaticon-customer-service"></i>
-                            <h4>24/7 Support</h4>
-                            <p>
-                                Downs those still witty an balls so chief so. Moment an little remain no lively
-                            </p>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End We Offer --> --}}
-
-    <!-- Start Overview
-                                                            ============================================= -->
+    <!-- Start Overview============================================= -->
 
 
     @if (isset($workProcesses) && count($workProcesses) > 0)
@@ -315,56 +221,72 @@
 
     <!-- End Overview -->
 
-    <!-- Start Fun Factor
-                                                            ============================================= -->
-    <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
-        style="background-image: url({{ asset('frontend/assets/img/2440x1578.png') }});">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 fun-fact-items">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 item">
-                            <div class="fun-fact">
-                                <div class="timer" data-to="230" data-speed="5000"></div>
-                                <span class="medium">Satisfied customers</span>
+
+
+    @if (isset($content?->satisfied_customers) ||
+            isset($content?->years_of_experience) ||
+            isset($content?->projects_completed) ||
+            isset($content?->awards_won))
+        <!-- Start Fun Factor============================================= -->
+        <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
+            style="background-image: url({{ asset('frontend/assets/img/2440x1578.png') }});">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 fun-fact-items">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 item">
+                                <div class="fun-fact">
+                                    <div class="timer" data-to="{{ $content?->satisfied_customers }}" data-speed="5000">
+                                    </div>
+                                    <span class="medium">Satisfied customers</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 item">
-                            <div class="fun-fact">
-                                <div class="timer" data-to="89" data-speed="5000"></div>
-                                <span class="medium">Professional agents</span>
+                            <div class="col-md-3 col-sm-3 item">
+                                <div class="fun-fact">
+                                    <div class="timer" data-to="{{ $content?->years_of_experience }}" data-speed="5000">
+                                    </div>
+                                    <span class="medium">Years of experience</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 item">
-                            <div class="fun-fact">
-                                <div class="timer" data-to="50" data-speed="5000"></div>
-                                <span class="medium">Hours support</span>
+                            <div class="col-md-3 col-sm-3 item">
+                                <div class="fun-fact">
+                                    <div class="timer" data-to="{{ $content?->projects_completed }}" data-speed="5000">
+                                    </div>
+                                    <span class="medium">Projects completed</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 item">
+                                <div class="fun-fact">
+                                    <div class="timer" data-to="{{ $content?->awards_won }}" data-speed="5000"></div>
+                                    <span class="medium">Awards won</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 subscribe">
-                    <h3>Stay update with us</h3>
-                    <p>
-                        Dried quick round it or order. Add past see west felt did any. Say out noise you taste merry plate
-                        you share. My resolve arrived is we chamber be removal.
-                    </p>
-                    <form action="#">
-                        <div class="input-group stylish-input-group">
-                            <input type="email" placeholder="Enter your e-mail here" class="form-control" name="email">
-                            <span class="input-group-addon">
-                                <button type="submit">
-                                    <i class="fa fa-paper-plane"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
+                    <div class="col-md-4 subscribe">
+                        <h3>Stay update with us</h3>
+                        <p>
+                            Dried quick round it or order. Add past see west felt did any. Say out noise you taste merry
+                            plate
+                            you share. My resolve arrived is we chamber be removal.
+                        </p>
+                        <form action="#">
+                            <div class="input-group stylish-input-group">
+                                <input type="email" placeholder="Enter your e-mail here" class="form-control"
+                                    name="email">
+                                <span class="input-group-addon">
+                                    <button type="submit">
+                                        <i class="fa fa-paper-plane"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Fun Factor -->
-
+        <!-- End Fun Factor -->
+    @endif
 
 
 
@@ -452,551 +374,259 @@
     </section>
     @endif
 
-    <!-- Start Team ============================================= -->
-    <div id="team" class="team-area default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>Innovative <span>Team</span></h2>
-                        <h4>Meet our awesome and expert team members</h4>
+
+    @if ($teams->isNotEmpty())
+        <!-- Start Team ============================================= -->
+        <div id="team" class="team-area default-padding bottom-less">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>Innovative <span>Team</span></h2>
+                            <h4>Meet our awesome and expert team members</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="team-items d-flex justify-content-center flex-wrap">
+                        @foreach ($teams as $team)
+                            <div class="col-md-6 col-lg-3 col-xl-3 single-item">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <img src="{{ asset($team?->image) }}" alt="Thumb">
+                                        <div class="overlay">
+                                            <h4>Connect us with</h4>
+                                            {{-- <p>
+                                                Jointure goodness interest debating did outweigh. Is time from them full my
+                                                gone in
+                                                went Of no introduced
+                                            </p> --}}
+                                            <div class="social">
+                                                <ul>
+                                                    @if (isset($team?->facebook_link))
+                                                        <li class="facebook">
+                                                            <a href="{{ $team?->facebook_link }}" target="_blank"><i
+                                                                    class="fab fa-facebook"></i></a>
+                                                        </li>
+                                                    @endif
+                                                    @if (isset($team?->twitter_link))
+                                                        <li class="twitter">
+                                                            <a href="{{ $team?->twitter_link }}" target="_blank"><i
+                                                                    class="fab fa-twitter"></i></a>
+                                                        </li>
+                                                    @endif
+                                                    @if (isset($team?->linkedin_link))
+                                                        <li class="vimeo">
+                                                            <a href="{{ $team?->linkedin_link }}" target="_blank"><i
+                                                                    class="fab fa-linkedin"></i></a>
+                                                        </li>
+                                                    @endif
+                                                    @if (isset($team?->instagram_link))
+                                                        <li class="instagram">
+                                                            <a href="{{ $team?->instagram_link }}" target="_blank"><i
+                                                                    class="fab fa-instagram"></i></a>
+                                                        </li>
+                                                    @endif
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        <span class="message">
+                                            <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                        </span>
+                                        <h4>{{ $team?->name }}</h4>
+                                        <span>{{ $team?->designation }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="team-items d-flex justify-content-evenly">
-                    <div class="col-md-6 col-lg-3 col-xl-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>I love my Studio</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Ahmed Kamal</h4>
-                                <span>Chairman of Softing</span>
-                            </div>
+        </div>
+        <!-- End Team -->
+    @endif
+
+
+    @if (isset($reviews) && count($reviews) > 0)
+        <!-- Start Testimonials============================================= -->
+        <div class="testimonials-area bg-gray default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>Customer <span>Review</span></h2>
+                            <h4>What people say about us</h4>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 col-xl-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>Connecting People</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="row">
+                            <div class="testimonial-items owl-carousel owl-theme">
+
+                                @foreach ($reviews as $review)
+                                    <!-- Single Item -->
+                                    <div class="testimonial-item">
+                                        <div class="thumb col-md-4">
+                                            <img src="{{ asset($review?->image) }}" alt="Thumb">
+                                        </div>
+                                        <div class="info col-md-8">
+                                            <div class="content">
+                                                <p>
+                                                    {!! $review?->review !!}
+                                                </p>
+                                                <h4>{{ $review?->name }}</h4>
+                                                <span>{{ $review?->designation }}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Drunal Park</h4>
-                                <span>Manager of Softing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 col-xl-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>Network Builder</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Munia Ankor</h4>
-                                <span>Founder of Softing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 col-xl-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>Network Builder</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Munia Ankor</h4>
-                                <span>Founder of Softing</span>
+                                    <!-- End Single Item -->
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Team -->
+        <!-- End Testimonials -->
+    @endif
 
-    <!-- Start Testimonials
-                                                            ============================================= -->
-    <div class="testimonials-area bg-gray default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>Customer <span>Review</span></h2>
-                        <h4>What people say about us</h4>
+    @if (isset($faqs) && count($faqs) > 0)
+        <!-- Start Faq============================================= -->
+        <div class="faq-area default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>Qustion and <span>Answer</span></h2>
+                            <h4>Most common and important answer</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Star Video Faq -->
+                    <div class="col-md-{{ isset($content?->faq_video_link) ? '6' : '12' }} video-faq">
+                        <div class="video">
+                            <img src="{{ asset($content?->banner_image) }}" alt="Thumb">
+                            <a class="popup-youtube light video-play-button" href="{{ $content?->faq_video_link }}">
+                                <i class="fa fa-play"></i>
+                            </a>
+                            <h4>Answer with video</h4>
+                        </div>
+                    </div>
+                    <!-- End Video Faq -->
+
+                    <!-- Star Accordion Items -->
+                    <div class="col-md-{{ isset($content?->faq_video_link) ? '6' : '12' }} faq-items">
+                        <div class="acd-items acd-arrow">
+                            <div class="panel-group symb" id="accordion">
+
+
+                                @foreach ($faqs as $faq)
+                                    <!-- Single Item -->
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion"
+                                                    href="#ac_{{ $loop->iteration }}">
+                                                    <span>{{ $loop->iteration }}</span> {{ $faq?->question }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="ac_{{ $loop->iteration }}"
+                                            class="panel-collapse collapse @if ($loop->first) in @endif ">
+                                            <div class="panel-body">
+                                                {!! $faq?->answer !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Item -->
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- End Accordion -->
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="row">
-                        <div class="testimonial-items owl-carousel owl-theme">
-                            <!-- Single Item -->
-                            <div class="testimonial-item">
-                                <div class="thumb col-md-4">
-                                    <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                </div>
-                                <div class="info col-md-8">
-                                    <div class="content">
+        </div>
+        <!-- End Faq  -->
+    @endif
+
+
+    @if (isset($blogs) && count($blogs) > 0)
+        <!-- Start Blog============================================= -->
+        <div id="blog" class="blog-area bg-gray default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>Latest <span>Blog</span></h2>
+                            <h4>Have a look to our latest blog</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="blog-items blog-carousel owl-carousel owl-theme">
+
+                            @foreach ($blogs as $blog)
+                                <!--  Single Item -->
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="single.html">
+                                            <img src="{{ $blog?->image }}" alt="Thumb">
+                                        </a>
+                                        <div class="tags">
+                                            @foreach ($blog?->tags as $tags)
+                                                <a href="#">{{ $tags->name }}</a>
+                                            @endforeach
+
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        <h4>
+                                            <a href="#">{{ $blog?->title }}</a>
+                                        </h4>
+                                        <div class="meta">
+                                            <ul>
+                                                {{-- <li><a href="#"><i class="fas fa-user"></i> User</a></li> --}}
+                                                <li><i class="fas fa-calendar-alt "></i>
+                                                    {{ date('Y M d', strtotime($blog?->created_at)) }}</li>
+                                                {{-- <li><a href="#"><i class="fas fa-comments"></i> 23</a></li> --}}
+                                            </ul>
+                                        </div>
                                         <p>
-                                            Understood instrument or do connection no appearance do invitation. Dried quick
-                                            round it or order. Add past see west felt did any. plate you share. My resolve
-                                            arrived is we chamber be removal.
+                                            {!! Str::limit(strip_tags($blog->content), 50) !!}
                                         </p>
-                                        <h4>Bubhan Kritha</h4>
-                                        <span>Web Developer</span>
+                                        <div class="read-more">
+                                            <a href="{{ route('blog.details', ['blog' => $blog?->slug]) }}"
+                                                class="more-btn">Read More <i class="fas fa-angle-double-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="testimonial-item">
-                                <div class="thumb col-md-4">
-                                    <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                </div>
-                                <div class="info col-md-8">
-                                    <div class="content">
-                                        <p>
-                                            Understood instrument or do connection no appearance do invitation. Dried quick
-                                            round it or order. Add past see west felt did any. plate you share. My resolve
-                                            arrived is we chamber be removal.
-                                        </p>
-                                        <h4>Junl Sarukh</h4>
-                                        <span>Software Engineer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="testimonial-item">
-                                <div class="thumb col-md-4">
-                                    <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                                </div>
-                                <div class="info col-md-8">
-                                    <div class="content">
-                                        <p>
-                                            Understood instrument or do connection no appearance do invitation. Dried quick
-                                            round it or order. Add past see west felt did any. plate you share. My resolve
-                                            arrived is we chamber be removal.
-                                        </p>
-                                        <h4>Makhon Daino</h4>
-                                        <span>Compnay Owner</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
+                                <!--  End Single Item -->
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+
+                        <div class="d-flex justify-content-center" style="margin-top:20px!important;">
+                            <a class="btn btn-theme effect btn-sm" href="{{ route('blog') }}">Show All</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Testimonials -->
+        <!-- End Blog -->
+    @endif
 
-    <!-- Start Faq
-                                                            ============================================= -->
-    <div class="faq-area default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>Qustion and <span>Answer</span></h2>
-                        <h4>Most common and important answer</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Star Video Faq -->
-                <div class="col-md-6 video-faq">
-                    <div class="video">
-                        <img src="{{ asset('frontend/assets/img/800x800.png') }}" alt="Thumb">
-                        <a class="popup-youtube light video-play-button"
-                            href="https://www.youtube.com/watch?v=owhuBrGIOsE">
-                            <i class="fa fa-play"></i>
-                        </a>
-                        <h4>Answer with video</h4>
-                    </div>
-                </div>
-                <!-- End Video Faq -->
 
-                <!-- Star Accordion Items -->
-                <div class="col-md-6 faq-items">
-                    <div class="acd-items acd-arrow">
-                        <div class="panel-group symb" id="accordion">
-
-                            <!-- Single Item -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac1">
-                                            <span>1</span> Do I need a business plan?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac1" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
-                            <!-- Single Item -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac2">
-                                            <span>2</span> How long should a business plan be?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac2" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
-                            <!-- Single Item -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac3">
-                                            <span>3</span> What goes into a business plan?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac3" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
-                            <!-- Single Item -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac4">
-                                            <span>4</span> Where do I start?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac4" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Item -->
-
-                        </div>
-                    </div>
-                    <!-- End Accordion -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Faq  -->
-
-    <!-- Start Blog
-                                                            ============================================= -->
-    <div id="blog" class="blog-area bg-gray default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>Latest <span>Blog</span></h2>
-                        <h4>Have a look to our latest blog</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="blog-items blog-carousel owl-carousel owl-theme">
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="{{ asset('frontend/assets/img/800x600.png') }}" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">startup</a>
-                                    <a href="#">business</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="#">Become latter but nor abroad wisdom waited</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="#" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="{{ asset('frontend/assets/img/800x600.png') }}" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">asset</a>
-                                    <a href="#">earning</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="#">attended desirous raptures declared assistance</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="#" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="{{ asset('frontend/assets/img/800x600.png') }}" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">success</a>
-                                    <a href="#">product</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="#">Justice improve age article between projection </a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="#" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="{{ asset('frontend/assets/img/800x600.png') }}" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">startup</a>
-                                    <a href="#">business</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="#">Prosperous continuing entreat unreserved</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="#" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Blog -->
-
-    <!-- Start Contact Area
-                                                            ============================================= -->
+    <!-- Start Contact Area ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="row">
@@ -1008,15 +638,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8 contact-form">
-                    <h2>Let's lalk about your idea</h2>
-                    <form action="assets/mail/contact.php" method="POST" class="contact-form">
+                <div class="col-md-{{ isset($content) ? 8 : 12 }} contact-form">
+                    <h2>Let's talk about your idea</h2>
+                    <form action="{{ route('contact-us.store') }}" method="POST" class="contact-form">
+                        @csrf
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="form-group">
                                     <input class="form-control" id="name" name="name" placeholder="Name"
                                         type="text">
-                                    <span class="alert-error"></span>
+                                    <span class="alert-error-name text-danger">
+
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -1025,22 +658,26 @@
                                 <div class="form-group">
                                     <input class="form-control" id="email" name="email" placeholder="Email*"
                                         type="email">
-                                    <span class="alert-error"></span>
+                                    <span class="alert-error-email text-danger">
+
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input class="form-control" id="phone" name="phone" placeholder="Phone"
                                         type="text">
-                                    <span class="alert-error"></span>
+                                    <span class="alert-error-phone text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="form-group comments">
-                                    <textarea class="form-control" id="comments" name="comments" placeholder="Tell Us About Project *"></textarea>
+                                    <textarea class="form-control" id="message" name="message" placeholder="Tell Us About Project *"></textarea>
                                 </div>
+                                <span class="alert-error-message text-danger">
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -1052,62 +689,156 @@
                         </div>
                         <!-- Alert Message -->
                         <div class="col-md-12 alert-notification">
-                            <div id="message" class="alert-msg"></div>
+                            <div id="alert" class="alert-msg"></div>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-4 address">
-                    <div class="address-items">
-                        <ul class="info">
-                            <li>
-                                <h4>Office Location</h4>
-                                <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
-                                <span>22 Baker Street,<br> London, United Kingdom,<br> W1U 3BW</span>
-                            </li>
-                            <li>
-                                <h4>Phone</h4>
-                                <div class="icon"><i class="fas fa-phone"></i></div>
-                                <span>+44-20-7328-4499 <br>+99-34-8878-9989</span>
-                            </li>
-                            <li>
-                                <h4>Email</h4>
-                                <div class="icon"><i class="fas fa-envelope-open"></i> </div>
-                                <span>info@yourdomain.com<br>admin@yourdomain.com</span>
-                            </li>
-                        </ul>
-                        <h4>Social Address</h4>
-                        <ul class="social">
-                            <li class="facebook">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li class="twitter">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li class="pinterest">
-                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                            </li>
-                            <li class="instagram">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </li>
-                        </ul>
+
+                @if (isset($content))
+                    <div class="col-md-4 address">
+                        <div class="address-items">
+                            <ul class="info">
+                                <li>
+                                    <h4>Office Location</h4>
+                                    <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
+                                    <span>{{ $content->address }}</span>
+                                </li>
+                                <li>
+                                    <h4>Phone</h4>
+                                    <div class="icon"><i class="fas fa-phone"></i></div>
+                                    <span>{{ $content->primary_phone }}<br>{{ $content->secondary_phone }}</span>
+                                </li>
+                                <li>
+                                    <h4>Email</h4>
+                                    <div class="icon"><i class="fas fa-envelope-open"></i> </div>
+                                    <span>{{ $content->email }}<br>{{ $content->support_email }}</span>
+                                </li>
+                            </ul>
+                            <h4>Social Address</h4>
+                            <ul class="social">
+                                @if (isset($content->facebook_link) && $content->facebook_link)
+                                    <li class="facebook">
+                                        <a href="{{ $content->facebook_link }}" target="_blank"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                @endif
+                                @if (isset($content->twitter_link) && $content->twitter_link)
+                                    <li class="twitter">
+                                        <a href="{{ $content->twitter_link }}" target="_blank"><i
+                                                class="fab fa-twitter"></i></a>
+                                    </li>
+                                @endif
+                                @if (isset($content->linkedin_link) && $content->linkedin_link)
+                                    <li class="linkedin">
+                                        <a href="{{ $content->linkedin_link }}" target="_blank"><i
+                                                class="fab fa-linkedin"></i></a>
+                                    </li>
+                                @endif
+                                @if (isset($content->instagram_link) && $content->instagram_link)
+                                    <li class="instagram">
+                                        <a href="{{ $content->instagram_link }}" target="_blank"><i
+                                                class="fab fa-instagram"></i></a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                @endif
+
+
+
+
             </div>
         </div>
     </div>
     <!-- End Contact -->
 
-    <!-- Start Google Maps
-                                                            ============================================= -->
-    <div class="maps-area">
-        <div class="container-full">
-            <div class="row">
-                <div class="google-maps">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14767.262289338461!2d70.79414485000001!3d22.284975!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1424308883981"></iframe>
+    @if (isset($content?->google_maps) && $content?->google_maps)
+        <!-- Start Google Maps============================================= -->
+        <div class="maps-area">
+            <div class="container-full">
+                <div class="row">
+                    <div class="google-maps">
+                        {!! $content->google_maps !!}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Google Maps -->
+        <!-- End Google Maps -->
+    @endif
 @endsection
+
+
+@push('scripts')
+    <script>
+        /* ==================================================  Contact Form Field Reset ===============================================*/
+
+
+
+        /* ==================================================
+            Contact Form Validations
+        ================================================== */
+        $('.contact-form').each(function() {
+            var formInstance = $(this);
+            formInstance.submit(function() {
+
+                var action = $(this).attr('action');
+
+                $("#alert").slideUp(750, function() {
+                    $('#alert').hide();
+
+                    $('#submit').attr('disabled', 'disabled');
+                    $.ajax({
+                        type: "POST",
+                        url: action,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            name: $('#name').val(),
+                            email: $('#email').val(),
+                            phone: $('#phone').val(),
+                            message: $('#message').val()
+                        },
+                        dataType: "json",
+                        success: function(data) {
+
+                            document.getElementById('alert').innerHTML = data.message;
+                            $('#alert').slideDown('slow');
+                            $('.contact-form img.loader').fadeOut('slow', function() {
+                                $(this).remove()
+                            });
+                            $('#submit').removeAttr('disabled');
+
+                            if (data.status) {
+                                formInstance[0].reset(); // Reset the form fields
+                            }
+
+                        },
+                        error: function(error) {
+
+
+                            $('#alert').slideDown('slow');
+                            $('.contact-form img.loader').fadeOut('slow', function() {
+                                $(this).remove()
+                            });
+                            $('#submit').removeAttr('disabled');
+
+
+                            document.getElementById('alert').innerHTML = error
+                                .responseJSON.message;
+                            $('#alert').slideDown('slow');
+                            $('.contact-form img.loader').fadeOut('slow', function() {
+                                $(this).remove()
+                            });
+                            $('#submit').removeAttr('disabled');
+                        }
+                    });
+
+
+                });
+                return false;
+            });
+        });
+    </script>
+@endpush

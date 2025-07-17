@@ -3462,8 +3462,8 @@ blockquote {
     background-color: #00b6f1;
 }
 
-.contact-us-area .address .social li.pinterest a {
-    background-color: #bd081c;
+.contact-us-area .address .social li.linkedin a {
+    background-color: #0a66c2;
 }
 
 .contact-us-area .address .social li.facebook a {
@@ -4136,3 +4136,75 @@ footer.color-yellow .footer-bottom p a {
     background: url(assets/img/preloader.gif) center no-repeat #fff;
     text-align: center;
 }
+
+.d-flex{
+    display: flex;
+
+}
+.d-flex.align-items-center {
+    align-items: center;
+}
+.d-flex.justify-content-center {
+    justify-content: center;
+}
+.d-flex.flex-column {
+    flex-direction: column;
+}
+.d-flex.flex-row {
+    flex-direction: row;
+}
+.d-flex.flex-wrap {
+    flex-wrap: wrap;
+}
+.d-flex.flex-grow-1 {
+    flex-grow: 1;
+}
+.d-flex.flex-shrink-0 {
+    flex-shrink: 0;
+}
+.d-flex.flex-shrink-1 {
+    flex-shrink: 1;
+}
+.d-flex.flex-fill {
+    flex: 1 1 auto;
+}
+.d-flex.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+.d-flex.flex-column-reverse {
+    flex-direction: column-reverse;
+}
+.d-flex.justify-content-start {
+    justify-content: flex-start;
+}
+.d-flex.justify-content-end {
+    justify-content: flex-end;
+}
+.d-flex.justify-content-between {
+    justify-content: space-between;
+}
+.d-flex.justify-content-around {
+    justify-content: space-around;
+}
+.d-flex.justify-content-evenly {
+    justify-content: space-evenly;
+}
+.d-flex.align-items-start {
+    align-items: flex-start;
+}
+.d-flex.align-items-end {
+    align-items: flex-end;
+}
+.d-flex.align-items-baseline {
+    align-items: baseline;
+}
+.d-flex.align-items-stretch {
+    align-items: stretch;
+}
+.d-flex.align-content-start {
+    align-content: flex-start;
+}
+.d-flex.align-content-end {
+    align-content: flex-end;
+}
+

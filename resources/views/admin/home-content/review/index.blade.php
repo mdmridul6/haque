@@ -42,7 +42,7 @@
                                                 data-bs-image-src="{{ asset($review->image) }}"></span></td>
                                         <td>{{ $review->name }}</td>
                                         <td>{{ $review->designation }}</td>
-                                        <td>{{ Str::limit($review->review, 50) }}</td>
+                                        <td>{{ Str::limit(strip_tags($review->review), 50) }}</td>
                                         <td class="d-flex justify-content-around align-items-center">
                                             <x-edit-button href="{{ route('admin.review.edit', ['review' => $review->id]) }}" />
                                             <x-delete-button :href="route('admin.review.destroy', ['review' => $review->id])" />
@@ -51,7 +51,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+
                     </div>
                 </div>
             </div>

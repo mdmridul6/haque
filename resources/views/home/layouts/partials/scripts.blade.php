@@ -11,3 +11,4 @@
 <script src="{{ asset('frontend/assets/js/count-to.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/bootsnav.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+@stack('scripts')

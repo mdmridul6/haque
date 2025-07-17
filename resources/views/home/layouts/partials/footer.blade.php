@@ -6,34 +6,48 @@
                 <div class="col-md-4 col-sm-6 equal-height item">
                     <div class="f-item about">
 
-                        @if ($content->title_or_logo === 'logo')
-
-                        <img src="{{asset($content?->site_logo)}}" alt="Logo">
+                        @if ($content?->title_or_logo === 'logo')
+                            <img src="{{ asset($content?->site_logo) }}" alt="Logo">
                         @else
                             <p>{{ $content?->site_title }}</p>
-
                         @endif
 
+
                         <p>
-                            Celebrated conviction stimulated principles day. Sure fail or in said west. Right my
-                            front it wound cause fully am sorry if. She jointure goodness interest debating did
-                            outweigh.
+                            {{ $content?->site_description }}
                         </p>
-                        <h5>Follow Us</h5>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-dribbble"></i></a>
-                            </li>
-                        </ul>
+
+                        @if (isset($content->facebook_link) || isset($content->twitter_link) || isset($content->linkedin_link) || isset($content->instagram_link))
+
+                            <h5>Follow Us</h5>
+                            <ul>
+
+                                @if (isset($content->facebook_link) && $content->facebook_link)
+                                    <li>
+                                        <a href="{{ $content->facebook_link }}" target="_blank"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                @endif
+                                @if (isset($content->twitter_link) && $content->twitter_link)
+                                    <li>
+                                        <a href="{{ $content->twitter_link }}" target="_blank"><i
+                                                class="fab fa-twitter"></i></a>
+                                    </li>
+                                @endif
+                                @if (isset($content->linkedin_link) && $content->linkedin_link)
+                                    <li>
+                                        <a href="{{ $content->linkedin_link }}" target="_blank"><i
+                                                class="fab fa-linkedin"></i></a>
+                                    </li>
+                                @endif
+                                @if (isset($content->instagram_link) && $content->instagram_link)
+                                    <li>
+                                        <a href="{{ $content->instagram_link }}" target="_blank"><i
+                                                class="fab fa-instagram"></i></a>
+                                    </li>
+                                @endif
+                            </ul>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6 equal-height item">
@@ -41,41 +55,22 @@
                         <h4>Company</h4>
                         <ul>
                             <li>
-                                <a href="#">Home</a>
+                                <a href="{{ !request()->routeIs('home') ? route('home').'#home' : '#home' }}">Home</a>
                             </li>
                             <li>
-                                <a href="#">About us</a>
+                                <a href="{{ !request()->routeIs('home') ? route('home').'#about' : '#about' }}">About us</a>
                             </li>
                             <li>
-                                <a href="#">Compnay History</a>
+                                <a href="{{ !request()->routeIs('home') ? route('home').'#features' : '#features' }}">Features</a>
                             </li>
                             <li>
-                                <a href="#">Features</a>
+                                <a href="{{ !request()->routeIs('home') ? route('home').'#overview' : '#overview' }}">Overview</a>
                             </li>
                             <li>
-                                <a href="#">Blog Page</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 equal-height item">
-                    <div class="f-item link">
-                        <h4>Resources</h4>
-                        <ul>
-                            <li>
-                                <a href="#">Career</a>
+                                <a href="{{ !request()->routeIs('home') ? route('home').'#pricing' : '#pricing' }}">Pricing</a>
                             </li>
                             <li>
-                                <a href="#">Leadership</a>
-                            </li>
-                            <li>
-                                <a href="#">Strategy</a>
-                            </li>
-                            <li>
-                                <a href="#">Services</a>
-                            </li>
-                            <li>
-                                <a href="#">History</a>
+                                <a href="{{ route('blog') }}">Blog Page</a>
                             </li>
                         </ul>
                     </div>
@@ -94,27 +89,34 @@
                                     </div>
                                     <div class="info">
                                         <h5>Website:</h5>
-                                        <span>www.validtheme.com</span>
+                                        <span>{{ request()->getHost() }}</span>
                                     </div>
                                 </li>
+                                @if (isset($content?->support_email) && $content?->support_email)
                                 <li>
                                     <div class="icon">
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                     <div class="info">
                                         <h5>Email:</h5>
-                                        <span>support@validtheme.com</span>
+                                        <span>{{ $content?->support_email }}</span>
                                     </div>
                                 </li>
+                                @endif
+
+
+                                @if (isset($content?->support_phone) && $content?->support_phone)
+
                                 <li>
                                     <div class="icon">
                                         <i class="fas fa-phone"></i>
                                     </div>
                                     <div class="info">
                                         <h5>Phone:</h5>
-                                        <span>+44-20-7328-4499</span>
+                                        <span>{{ $content?->support_phone }}</span>
                                     </div>
                                 </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -128,19 +130,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
-                        <p>&copy; Copyright 2019. All Rights Reserved by <a href="#">validthemes</a></p>
+                        <p>&copy; Copyright 2019. All Rights Reserved by <a href="https://www.linkedin.com/in/md-mridul-biswas/" target="_blank">Md Mridul Biswash</a></p>
                     </div>
                     <div class="col-md-6 text-right link">
                         <ul>
                             <li>
-                                <a href="#">Terms</a>
+                                <a href="{{ route('terms-and-conditions') }}">Terms</a>
                             </li>
                             <li>
-                                <a href="#">Privacy</a>
+                                <a href="{{ route('privacy-policy') }}">Privacy</a>
                             </li>
-                            <li>
-                                <a href="#">Support</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>

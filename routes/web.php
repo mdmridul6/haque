@@ -98,6 +98,9 @@ Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function ()
 
 // Frontend Section
 
-Route::get('/blog/{id}', [HomeController::class, 'blogDetails'])->name('home');
-Route::get('/blog', [HomeController::class, 'blog'])->name('home');
+Route::get('/blog-details/{blog:slug}', [HomeController::class, 'blogDetails'])->name('blog.details');
+Route::get('/blog/{tag:slug?}', [HomeController::class, 'blog'])->name('blog');
+Route::post('/contact-us', [HomeController::class, 'contactUsStore'])->name('contact-us.store');
+Route::get('terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('terms-and-conditions');
+Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/', [HomeController::class, 'index'])->name('home');

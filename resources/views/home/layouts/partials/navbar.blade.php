@@ -14,7 +14,7 @@
                     <a class="navbar-brand smooth-menu"
                         href="{{ !request()->routeIs('home') ? route('home') : '#home' }}">
 
-                        @if ($content->title_or_logo === 'logo')
+                        @if ($content?->title_or_logo === 'logo')
                             <img src="{{ asset($content?->site_logo) }}" class="logo logo-display" alt="Logo">
                         @else
                             <h1>{{ $content?->site_title }}</h1>
@@ -31,16 +31,16 @@
                                 href="{{ !request()->routeIs('home') ? route('home') : '#home' }}">Home</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#about">About</a>
+                            <a class="smooth-menu" href="{{ !request()->routeIs('home') ? route('home').'#about' : '#about' }}">About</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#features">Features</a>
+                            <a class="smooth-menu" href="{{ !request()->routeIs('home') ? route('home').'#features' : '#features' }}">Features</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#overview">Overview</a>
+                            <a class="smooth-menu" href="{{ !request()->routeIs('home') ? route('home').'#overview' : '#overview' }}">Overview</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#pricing">Pricing</a>
+                            <a class="smooth-menu" href="{{ !request()->routeIs('home') ? route('home').'#pricing' : '#pricing' }}">Pricing</a>
                         </li>
                         <li>
                             <a class="smooth-menu" href="#team">Team</a>

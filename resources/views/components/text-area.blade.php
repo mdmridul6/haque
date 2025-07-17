@@ -19,7 +19,7 @@
         <script src="{{asset('build/assets/plugins/wysiwyag/jquery.richtext.js')}}"></script>
 
         <script>
-            $('.content').richText({
+            $('#{{ $name }}').richText({
                 imageUpload: false,
                 fileUpload: false,
                 videoEmbed: false,

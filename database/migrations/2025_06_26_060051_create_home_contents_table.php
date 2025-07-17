@@ -27,8 +27,24 @@ return new class extends Migration
             $table->text('about_us_subtitle')->default('Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new ham melancholy son themselves.');
             $table->string('offer_title')->default("What we Offer");
             $table->text('offer_subtitle')->default('Understanding the easy to use process');
-            // $table->string('')->default('frontend/assets/img/2440x1578.png');
-            // $table->string('')->default('frontend/assets/img/2440x1578.png');
+            $table->string('primary_phone')->default('123-456-7890');
+            $table->string('secondary_phone')->default('098-765-4321');
+            $table->string('email')->default('info@example.com');
+            $table->string('address')->default('123 Main Street, City, Country');
+            $table->string('support_email')->default('support@example.com');
+            $table->string('support_phone')->default('123-456-7890');
+            $table->text('google_map_embed')->default('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509123!2d144.9537363153165!3d-37.81627997975144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11b8b7%3A0x5045675218ce6e0!2sMelbourne%20CBD%2C%20Victoria%2C%20Australia!5e0!3m2!1sen!2sin!4v1616161616161" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>');
+            $table->string('facebook_link')->default('https://www.facebook.com');
+            $table->string('twitter_link')->default('https://www.twitter.com');
+            $table->string('instagram_link')->default('https://www.instagram.com');
+            $table->string('linkedin_link')->default('https://www.linkedin.com');
+            $table->string('faq_video_link')->default('https://www.youtube.com/watch?v=example');
+            $table->integer('satisfied_customers')->default(2500);
+            $table->integer('years_of_experience')->default(5);
+            $table->integer('projects_completed')->default(100);
+            $table->integer('awards_won')->default(10);
+            $table->text('terms_and_conditions')->nullable();
+            $table->text('privacy_policy')->nullable();
             $table->timestamps();
         });
     }
