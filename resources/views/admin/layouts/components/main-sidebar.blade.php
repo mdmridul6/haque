@@ -73,6 +73,33 @@
 
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="javascript:void(0)"><i
+                            class="side-menu__icon ri-store-2-line"></i>
+                            <span class="side-menu__label">Product</span><i
+                            class="angle fe fe-chevron-right"></i></a>
+                    <ul class="slide-menu">
+                        <li class="panel sidetab-menu">
+                            <div class="panel-body tabs-menu-body p-0 border-0">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="side1">
+                                        <ul class="sidemenu-list">
+                                            <li class="side-menu-label1"><a href="javascript:void(0)">Product</a>
+                                            </li>
+                                            <li><a class="slide-item" href="{{ route('admin.product.index') }}">Product</a>
+                                            </li>
+                                            <li><a class="slide-item"
+                                                    href="{{ route('admin.product-category.index') }}">Category</a></li>
+                                            <li><a class="slide-item" href="{{ route('admin.product-brand.index') }}">Brand</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="javascript:void(0)"><i
                             class="side-menu__icon ri-article-line"></i>
                             <span class="side-menu__label">Blogs</span><i
                             class="angle fe fe-chevron-right"></i></a>

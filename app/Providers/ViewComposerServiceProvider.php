@@ -32,10 +32,10 @@ class ViewComposerServiceProvider extends ServiceProvider
                 $route = request()->route();
                 $name = $route?->getName() ?? 'Page';
 
-                $pageTitle = Str::title(Str::replace('.', ' ', Str::after($name,'.'))); // e.g. admin.users.edit → Edit
+                $pageTitle = Str::title(str_replace(['.','-', 'index'], [' ',' ', 'list'], Str::after($name, '.'))); // e.g. admin.users.edit → Edit
                 $view->with('pageTitle', $pageTitle);
             }
         });
-        View::composer('*', BreadcrumbComposer::class);
+        View::composer('admin.*', BreadcrumbComposer::class);
     }
 }

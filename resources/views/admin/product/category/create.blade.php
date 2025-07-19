@@ -9,7 +9,7 @@
         <x-breadcrumbs :segments="$breadcrumbs" />
         <!-- End breadcrumb -->
         <div class="ms-auto">
-            <x-back-button href="{{ route('admin.category.index') }}" />
+            <x-back-button href="{{ route('admin.product-category.index') }}" />
         </div>
     </div>
     <!-- END PAGE HEADER -->
@@ -22,7 +22,7 @@
                     <h4>Category Add</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.category.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.product-category.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
 
@@ -35,7 +35,7 @@
 
                             <div class="btn-list text-end">
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <a href="{{ route('admin.category.index') }}" class="btn btn-secondary ms-2">Cancel</a>
+                                <a href="{{ route('admin.product-category.index') }}" class="btn btn-secondary ms-2">Cancel</a>
                             </div>
 
                         </div>

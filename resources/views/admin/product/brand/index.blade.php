@@ -9,7 +9,7 @@
         <x-breadcrumbs :segments="$breadcrumbs" />
         <!-- End breadcrumb -->
         <div class="ms-auto">
-            <x-add-button href="{{ route('admin.category.create') }}" />
+            <x-add-button href="{{ route('admin.product-brand.create') }}" />
         </div>
     </div>
     <!-- END PAGE HEADER -->
@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Category List</h4>
+                    <h4>Brand List</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -33,13 +33,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($productBrand as $brand)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $brand->name }}</td>
                                         <td class="d-flex justify-content-around align-items-center">
-                                            <x-edit-button href="{{ route('admin.category.edit', ['category' => $category->id]) }}" />
-                                            <x-delete-button :href="route('admin.category.destroy', ['category' => $category->id])" />
+                                            <x-edit-button href="{{ route('admin.product-brand.edit', ['product_brand' => $brand->id]) }}" />
+                                            <x-delete-button :href="route('admin.product-brand.destroy', ['product_brand' => $brand->id])" />
                                         </td>
                                     </tr>
                                 @endforeach

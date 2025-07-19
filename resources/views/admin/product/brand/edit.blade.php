@@ -9,7 +9,7 @@
         <x-breadcrumbs :segments="$breadcrumbs" />
         <!-- End breadcrumb -->
         <div class="ms-auto">
-            <x-back-button href="{{ route('admin.category.index') }}" />
+            <x-back-button href="{{ route('admin.product-brand.index') }}" />
         </div>
     </div>
     <!-- END PAGE HEADER -->
@@ -19,23 +19,25 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Category Add</h4>
+                    <h4>Brand Edit</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.category.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.product-brand.update', ['product_brand' => $productBrand->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="row">
+
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="name" label="Name" :value="old('name')" />
+                                    <x-text-input name="name" label="Name" :value="old('name', $productBrand->name)" />
                                 </div>
                             </div>
 
 
                             <div class="btn-list text-end">
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <a href="{{ route('admin.category.index') }}" class="btn btn-secondary ms-2">Cancel</a>
+                                <a href="{{ route('admin.product-brand.index') }}" class="btn btn-secondary ms-2">Cancel</a>
                             </div>
 
                         </div>

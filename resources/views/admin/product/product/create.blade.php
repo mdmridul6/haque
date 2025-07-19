@@ -9,7 +9,7 @@
         <x-breadcrumbs :segments="$breadcrumbs" />
         <!-- End breadcrumb -->
         <div class="ms-auto">
-            <x-back-button href="{{ route('admin.blog.index') }}" />
+            <x-back-button href="{{ route('admin.product.index') }}" />
         </div>
     </div>
     <!-- END PAGE HEADER -->
@@ -19,47 +19,58 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Blog Add</h4>
+                    <h4>Product Add</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.blog.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
+
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <x-file-uploder name="image" label="Image" />
+                                    <x-text-input name="name" label="Name" :value="old('name')" />
                                 </div>
                             </div>
-
-
-
-
-                            <div class="col-md-4">
+                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-text-input name="title" label="Title" :value="old('title')" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <x-select-option name="category_id" label="Category" :options="$categories" valueField="id"
+                                    <x-select-option name="brand_id" label="Brand" :options="$productBrand" valueField="id"
                                         titleField="name" />
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-select-option name="tags" label="Tags" :options="$tags" :multiple="true"
-                                        valueField="id" titleField="name" />
+                                    <x-select-option name="category_id" label="Category" :options="$productCategories" valueField="id"
+                                        titleField="name" />
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <x-text-input type="number" name="price" label="Price" :value="old('price')" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <x-text-input type="number" name="quantity" label="Quantity" :value="old('quantity')" />
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <x-text-area name="content" label="Content" :value="old('content')" />
-
+                                    <x-text-area  name="description" label="Description" :value="old('description')" />
                                 </div>
                             </div>
+
+                             <div class="col-md-12">
+                                <div class="form-group">
+                                    <x-file-uploder name="images" label="Images" :image_url="null" :multiple="true" />
+                                </div>
+                            </div>
+
+
 
 
                         </div>
+
                         <hr>
                         <h5>Seo</h5>
                         <hr>
@@ -80,7 +91,7 @@
                                         :value="old('meta_description')" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <x-text-input name="meta_keywords"
                                         label="Meta Keywords <span class='text-danger text-bold'>(Meta keywords should be between 3-5 keywords, separated by commas)</span>"
@@ -89,12 +100,14 @@
                             </div>
 
 
+
                             <div class="btn-list text-end">
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <a href="{{ route('admin.blog.index') }}" class="btn btn-secondary ms-2">Cancel</a>
+                                <a href="{{ route('admin.product.index') }}" class="btn btn-secondary ms-2">Cancel</a>
                             </div>
 
                         </div>
+
 
 
                     </form>

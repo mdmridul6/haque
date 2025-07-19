@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\OfferContentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\ProductBrandController;
+use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileConreoller;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RoleController;
@@ -26,6 +29,7 @@ use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Index;
+use App\Models\ProductCategory;
 use App\Models\WorkProcess;
 
 /*
@@ -90,6 +94,12 @@ Route::middleware(['auth'])->prefix('/admin')->name('admin.')->group(function ()
     Route::resource('category', CategoryController::class);
     Route::resource('tag', TagController::class);
     Route::resource('blog', BlogController::class);
+
+
+
+    Route::resource('product', ProductController::class);
+    Route::resource('product-category', ProductCategoryController::class);
+    Route::resource('product-brand', ProductBrandController::class);
 
 });
 

@@ -18,7 +18,7 @@ class BreadcrumbComposer
             $url = '';
 
             foreach ($parts as $index => $part) {
-                $title = Str::title(str_replace('-', ' ', $part)); // e.g. "user-management" → "User Management"
+                $title = Str::title(str_replace(['-','index'], [' ','list'], $part)); // e.g. "user-management" → "User Management"
 
                 // Build up URL only for earlier segments
                 if ($index < count($parts) - 1) {

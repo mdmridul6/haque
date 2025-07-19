@@ -16,13 +16,13 @@
 
 	+.breadcrumb-item::before {
 		display: inline-block;
-		content: "\f178";
-		font-family: "FontAwesome";
+		content: "/";
+		// font-family: "FontAwesome";
 		font-style: normal;
-		font-weight: normal;
+		font-weight: 800;
 		text-decoration: inherit;
-		font-size: 10px;
-		color: $black-3;
+		font-size: spx;
+		color: $default-color;
 	}
 	&.active {
 		color: $primary;
