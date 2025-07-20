@@ -45,6 +45,8 @@ return new class extends Migration
             $table->integer('awards_won')->default(10);
             $table->text('terms_and_conditions')->nullable();
             $table->text('privacy_policy')->nullable();
+            $table->text('google_recaptcha_site_key')->nullable();
+            $table->text('google_recaptcha_secret_key')->nullable();
             $table->timestamps();
         });
     }

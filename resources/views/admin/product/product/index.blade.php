@@ -27,7 +27,11 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
+                                    <th>Thumble</th>
                                     <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Brand</th>
+                                    <th>Quantity</th>
                                     <th class="text-center">Action</th>
 
                                 </tr>
@@ -36,7 +40,13 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $products->name }}</td>
+                                        <td><span class="avatar cover-image br-2" data-bs-image-src="{{ asset($product->images->first()?->image) }}"></span></td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->category->name }}</td>
+                                        <td>{{ $product->brand->name }}</td>
+                                        <td>{{ $product->quantity }}</td>
+                                        {{-- <td>{{ $product->images->name }}</td> --}}
+
                                         <td class="d-flex justify-content-around align-items-center">
                                             <x-edit-button href="{{ route('admin.product.edit', ['product' => $product->id]) }}" />
                                             <x-delete-button :href="route('admin.product.destroy', ['product' => $product->id])" />

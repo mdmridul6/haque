@@ -55,7 +55,7 @@ class ProductBrandController extends Controller
             return redirect()->back()->withErrors($e->getMessage())->withInput();
         }
 
-        return redirect()->route('admin.product-category.index');
+        return redirect()->route('admin.product-brand.index');
     }
 
     /**
