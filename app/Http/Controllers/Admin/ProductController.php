@@ -70,7 +70,7 @@ class ProductController extends Controller
             DB::commit();
                if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
-                    $path = ImageUploader::resizeUpload($image, 'product', 300, 300);
+                    $path = ImageUploader::resizeUpload($image, 'product', 1024, 1024);
                     $productimage = new ProductImages();
                     $productimage->product_id = $product->id;
                     $productimage->image = $path;
@@ -123,7 +123,7 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request, Product $product)
     {
         try {
-            
+
             DB::beginTransaction();
             $product->name = $request->name;
             $product->brand_id = $request->brand_id;

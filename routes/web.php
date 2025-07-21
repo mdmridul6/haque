@@ -113,4 +113,6 @@ Route::get('/blog/{tag:slug?}', [HomeController::class, 'blog'])->name('blog');
 Route::post('/contact-us', [HomeController::class, 'contactUsStore'])->name('contact-us.store');
 Route::get('terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('terms-and-conditions');
 Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/products', [HomeController::class, 'products'])->name('products');
+Route::get('/product/{product:slug}', [HomeController::class, 'productDetails'])->name('product.details');
 Route::get('/', [HomeController::class, 'index'])->name('home');

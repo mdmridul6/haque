@@ -1,5 +1,6 @@
 <!-- ========== Start Stylesheet ========== -->
 <link href="{{ asset('frontend/assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('frontend/assets/css/bootstrap-spacing-classes.css') }}" rel="stylesheet" />
 
 <link href="{{ asset('frontend/assets/css/font-awesome.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('frontend/assets/css/bootstrap-icons.min.css') }}" rel="stylesheet" />

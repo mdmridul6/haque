@@ -11,6 +11,7 @@ use App\Models\Faq;
 use App\Models\HomeContent;
 use App\Models\OfferContent;
 use App\Models\Plan;
+use App\Models\Product;
 use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Team;
@@ -33,6 +34,8 @@ class HomeController extends Controller
         $data['reviews'] = Review::get();
         $data['faqs'] = Faq::where('status', true)->orderBy('order', 'desc')->get();
         $data['blogs'] = Blog::with(['tags', 'category'])->get();
+        $data['products'] = Product::with(['category', 'brand', 'images'])->limit(6)->get();
+        // dd($data['products']);
         return view('home.index', $data);
     }
 
@@ -89,5 +92,13 @@ class HomeController extends Controller
     {
         $data['content'] = HomeContent::first();
         return view('home.privacy-policy', $data);
+    }
+
+
+    public function productDetails(Product $product)  {
+        $data['content'] = HomeContent::first();
+        $data['product'] = $product->load(['category', 'brand', 'images']);
+
+        return view('home.product-details',$data);
     }
 }

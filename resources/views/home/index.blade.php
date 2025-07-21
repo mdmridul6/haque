@@ -269,6 +269,69 @@
         <!-- End Fun Factor -->
     @endif
 
+    @if (isset($products) && count($products) > 0)
+        <!-- Start Blog============================================= -->
+        <div id="product" class="product-area bg-gray default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>Latest <span>Product</span></h2>
+                            <h4>Have a look to our latest Product</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-items product-carousel owl-carousel owl-theme">
+
+                            @foreach ($products as $product)
+                                <!--  Single Item -->
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="{{ route('product.details', ['product' => $product?->slug]) }}">
+                                            <img src="{{ asset($product?->images->first()->image) }}" alt="Thumb">
+                                        </a>
+                                        <div class="tags">
+
+                                                <a href="#">{{ $product?->category?->name }}</a>
+                                                <a href="#">{{ $product?->brand?->name }}</a>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        <h4>
+                                            <a href="{{ route('product.details', ['product' => $product?->slug]) }}">{{ $product?->name }}</a>
+                                        </h4>
+                                        <p>
+                                            {!! Str::limit(strip_tags($product->description), 50) !!}
+                                        </p>
+                                        <div class="info d-flex justify-content-between align-items-baseline">
+                                            <h4 class="price-info"><x-taka></x-taka>{{ $product?->price }}
+                                            </h4>
+                                            <a href="{{ route('product.details', ['product' => $product?->slug]) }}"
+                                                class="btn btn-theme effect btn-sm mt-0">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  End Single Item -->
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+
+                        <div class="d-flex justify-content-center" style="margin-top:20px!important;">
+                            <a class="btn btn-theme effect btn-sm" href="{{ route('blog') }}">Show All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Blog -->
+    @endif
+
+
 
 
     @if (isset($plans) && count($plans) > 0)
